@@ -1,19 +1,71 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, X, Send } from "lucide-react"
+import { MessageCircle, X, Send, User, Bot } from "lucide-react"
+
+interface ChatMessage {
+  id: string
+  text: string
+  sender: 'user' | 'bot'
+  timestamp: Date
+}
 
 export function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false)
   const [message, setMessage] = useState("")
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: '1',
+      text: "Hello! How can we help you with your packaging needs today?",
+      sender: 'bot',
+      timestamp: new Date()
+    }
+  ])
+  const [isTyping, setIsTyping] = useState(false)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  const botResponses = [
+    "Thank you for your message! Our team will get back to you shortly.",
+    "That's a great question! Let me connect you with our packaging specialist.",
+    "I understand your requirements. Would you like to schedule a consultation?",
+    "Perfect! I'll forward your inquiry to our sales team for a custom quote.",
+    "Thanks for reaching out! We offer competitive pricing and fast turnaround times."
+  ]
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      // Simulate sending message
-      console.log("Message sent:", message)
+      const userMessage: ChatMessage = {
+        id: Date.now().toString(),
+        text: message.trim(),
+        sender: 'user',
+        timestamp: new Date()
+      }
+      
+      setMessages(prev => [...prev, userMessage])
       setMessage("")
-      // In a real app, this would integrate with a chat service
+      setIsTyping(true)
+
+      // Simulate bot response
+      setTimeout(() => {
+        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)]
+        const botMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          text: randomResponse,
+          sender: 'bot',
+          timestamp: new Date()
+        }
+        setMessages(prev => [...prev, botMessage])
+        setIsTyping(false)
+      }, 1000 + Math.random() * 2000)
     }
   }
 
@@ -49,10 +101,57 @@ export function ChatSupport() {
           {/* Chat Messages */}
           <div className="p-4 h-64 overflow-y-auto">
             <div className="space-y-4">
-              <div className="bg-gray-100 p-3 rounded-lg max-w-xs">
-                <p className="text-sm">Hello! How can we help you with your packaging needs today?</p>
-                <span className="text-xs text-gray-500">Support Team</span>
-              </div>
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`flex items-start gap-2 max-w-xs ${
+                      msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
+                    }`}
+                  >
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
+                      msg.sender === 'user' 
+                        ? 'bg-[var(--axis-orange)] text-white' 
+                        : 'bg-gray-300 text-gray-600'
+                    }`}>
+                      {msg.sender === 'user' ? <User className="w-3 h-3" /> : <Bot className="w-3 h-3" />}
+                    </div>
+                    <div
+                      className={`p-3 rounded-lg ${
+                        msg.sender === 'user'
+                          ? 'bg-[var(--axis-orange)] text-white'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}
+                    >
+                      <p className="text-sm">{msg.text}</p>
+                      <span className={`text-xs ${
+                        msg.sender === 'user' ? 'text-orange-100' : 'text-gray-500'
+                      }`}>
+                        {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="flex items-start gap-2">
+                    <div className="w-6 h-6 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-xs">
+                      <Bot className="w-3 h-3" />
+                    </div>
+                    <div className="bg-gray-100 p-3 rounded-lg">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
           </div>
 
@@ -65,12 +164,14 @@ export function ChatSupport() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your message..."
                 className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
-                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                disabled={isTyping}
               />
               <Button
                 onClick={handleSendMessage}
                 size="sm"
-                className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
+                disabled={isTyping || !message.trim()}
+                className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-4 w-4" />
               </Button>
@@ -82,7 +183,7 @@ export function ChatSupport() {
       {/* WhatsApp Button */}
       <div className="fixed bottom-24 right-6 z-40">
         <Button
-          onClick={() => window.open("https://wa.me/15551234567", "_blank")}
+          onClick={() => window.open("https://wa.me/923048338844", "_blank")}
           className="rounded-full w-12 h-12 bg-green-500 hover:bg-green-600 shadow-lg"
           aria-label="Contact via WhatsApp"
         >

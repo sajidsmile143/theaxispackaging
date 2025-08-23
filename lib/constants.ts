@@ -4,7 +4,7 @@ export const COMPANY_INFO = {
   phone: "+1 (555) 123-4567",
   email: "info@axispackaging.com",
   address: "123 Industrial Blvd, Manufacturing City, MC 12345",
-  hours: "Mon-Fri: 8AM-6PM EST",
+  hours: "Mon-Fri: 8AM-6PM PST",
 }
 
 export const NAVIGATION_ITEMS = [

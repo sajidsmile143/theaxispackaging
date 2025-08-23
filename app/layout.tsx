@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { Providers } from "./providers"
+import { ChatSupport } from "@/components/chat-support"
 
 export const metadata: Metadata = {
   title: "Axis Packaging - Premium Custom Packaging Solutions",
@@ -30,6 +31,7 @@ html {
       </head>
       <body>
         <Providers>{children}</Providers>
+        <ChatSupport />
       </body>
     </html>
   )
