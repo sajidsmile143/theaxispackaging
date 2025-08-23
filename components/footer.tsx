@@ -83,7 +83,7 @@ export function Footer() {
               <a href="#" aria-label="Facebook" className="text-blue-100 hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" aria-label="Instagram" className="text-blue-100 hover:text-white">
+              <a href="https://www.instagram.com/theaxispackaging/?utm_source=qr&igsh=c3BxM3BkN2t3Zmo4#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-blue-100 hover:text-white">
                 <Instagram className="h-6 w-6" />
               </a>
               <a href="#" aria-label="LinkedIn" className="text-blue-100 hover:text-white">
