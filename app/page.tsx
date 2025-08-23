@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { ChatSupport } from "@/components/chat-support"
 import { SolutionFeatures } from "@/components/solution-features"
 import { ProductShowcase } from "@/components/product-showcase"
+import { AdditionalSections } from "@/components/additional-sections"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <AdditionalSections />
         <SolutionFeatures />
         <ProductShowcase />
         <InstantQuote />

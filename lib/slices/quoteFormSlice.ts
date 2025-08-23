@@ -10,6 +10,7 @@ interface QuoteFormData {
   }
   material: string
   printing: string
+  timeline: string
   contactInfo: {
     name: string
     email: string
@@ -37,6 +38,7 @@ const initialState: QuoteFormState = {
     },
     material: "",
     printing: "",
+    timeline: "",
     contactInfo: {
       name: "",
       email: "",

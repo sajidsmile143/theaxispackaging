@@ -46,12 +46,13 @@ Project Details:
 - Dimensions: ${formData.dimensions.length}" x ${formData.dimensions.width}" x ${formData.dimensions.height}"
 - Material: ${formData.material}
 - Printing: ${formData.printing}
+- Timeline: ${formData.timeline}
 
 Additional Requirements: ${formData.additionalRequirements}
       `
 
       // Send email using mailto link
-      const mailtoLink = `mailto:theasxis.packaging@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
+      const mailtoLink = `mailto:sajidmernstackdev@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
       window.open(mailtoLink, '_blank')
 
       // Simulate API call
@@ -170,12 +171,18 @@ Additional Requirements: ${formData.additionalRequirements}
                             <SelectValue placeholder="Select product type" />
                           </SelectTrigger>
                           <SelectContent className="z-[100]" position="popper" sideOffset={4}>
-                            <SelectItem value="custom-boxes">Custom Boxes</SelectItem>
-                            <SelectItem value="retail-packaging">Retail Packaging</SelectItem>
-                            <SelectItem value="food-packaging">Food Packaging</SelectItem>
-                            <SelectItem value="cosmetic-boxes">Cosmetic Boxes</SelectItem>
-                            <SelectItem value="electronics-packaging">Electronics Packaging</SelectItem>
-                            <SelectItem value="pharmaceutical-boxes">Pharmaceutical Boxes</SelectItem>
+                            <SelectItem value="folding-carton-boxes">Custom Folding Carton Boxes</SelectItem>
+                            <SelectItem value="rigid-boxes">Premium Rigid Boxes</SelectItem>
+                            <SelectItem value="box-inserts">Custom Box Inserts</SelectItem>
+                            <SelectItem value="reusable-bags">Custom Reusable Bags</SelectItem>
+                            <SelectItem value="mailer-bags">Printed Mailer Bags</SelectItem>
+                            <SelectItem value="flexible-pouches">Flexible Packaging Pouches</SelectItem>
+                            <SelectItem value="tin-containers">Metal Tin Containers</SelectItem>
+                            <SelectItem value="pop-displays">Retail POP Displays</SelectItem>
+                            <SelectItem value="stickers-labels">Vinyl Stickers Labels</SelectItem>
+                            <SelectItem value="kraft-boxes">Printed Kraft Boxes</SelectItem>
+                            <SelectItem value="paper-bags">Paper Shopping Bags</SelectItem>
+                            <SelectItem value="eco-friendly">Eco-friendly Packaging</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -253,9 +260,17 @@ Additional Requirements: ${formData.additionalRequirements}
                             <SelectValue placeholder="Select material" />
                           </SelectTrigger>
                           <SelectContent className="z-[100]" position="popper" sideOffset={4}>
-                            <SelectItem value="corrugated">Corrugated Cardboard</SelectItem>
-                            <SelectItem value="kraft">Kraft Paper</SelectItem>
-                            <SelectItem value="rigid">Rigid Cardboard</SelectItem>
+                            <SelectItem value="corrugated-e-flute">Corrugated E-Flute</SelectItem>
+                            <SelectItem value="corrugated-b-flute">Corrugated B-Flute</SelectItem>
+                            <SelectItem value="corrugated-c-flute">Corrugated C-Flute</SelectItem>
+                            <SelectItem value="corrugated-bc-flute">Corrugated BC-Flute</SelectItem>
+                            <SelectItem value="kraft-paper">Kraft Paper</SelectItem>
+                            <SelectItem value="rigid-chipboard">Rigid Chipboard</SelectItem>
+                            <SelectItem value="recycled-paper">Recycled Paper</SelectItem>
+                            <SelectItem value="fsc-certified">FSC Certified Paper</SelectItem>
+                            <SelectItem value="metal-tin">Metal Tin</SelectItem>
+                            <SelectItem value="flexible-film">Flexible Film</SelectItem>
+                            <SelectItem value="vinyl">Vinyl</SelectItem>
                             <SelectItem value="eco-friendly">Eco-Friendly Materials</SelectItem>
                           </SelectContent>
                         </Select>
@@ -272,13 +287,38 @@ Additional Requirements: ${formData.additionalRequirements}
                           </SelectTrigger>
                           <SelectContent className="z-[100]" position="popper" sideOffset={4}>
                             <SelectItem value="no-printing">No Printing</SelectItem>
-                            <SelectItem value="1-color">1 Color</SelectItem>
-                            <SelectItem value="2-color">2 Color</SelectItem>
+                            <SelectItem value="1-color">1 Color Printing</SelectItem>
+                            <SelectItem value="2-color">2 Color Printing</SelectItem>
                             <SelectItem value="full-color">Full Color (CMYK)</SelectItem>
-                            <SelectItem value="premium">Premium Finishes</SelectItem>
+                            <SelectItem value="spot-color">Spot Color</SelectItem>
+                            <SelectItem value="foil-stamping">Foil Stamping</SelectItem>
+                            <SelectItem value="embossing">Embossing</SelectItem>
+                            <SelectItem value="debossing">Debossing</SelectItem>
+                            <SelectItem value="uv-coating">UV Coating</SelectItem>
+                            <SelectItem value="matte-finish">Matte Finish</SelectItem>
+                            <SelectItem value="gloss-finish">Gloss Finish</SelectItem>
+                            <SelectItem value="custom-finishes">Custom Finishes</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="timeline">Timeline</Label>
+                      <Select
+                        value={formData.timeline || ""}
+                        onValueChange={(value) => dispatch(updateFormData({ timeline: value }))}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select timeline" />
+                        </SelectTrigger>
+                        <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                          <SelectItem value="rush-1-2-weeks">Rush (1-2 weeks)</SelectItem>
+                          <SelectItem value="standard-3-4-weeks">Standard (3-4 weeks)</SelectItem>
+                          <SelectItem value="extended-5-6-weeks">Extended (5-6 weeks)</SelectItem>
+                          <SelectItem value="flexible-6+weeks">Flexible (6+ weeks)</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 )}
