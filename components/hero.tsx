@@ -9,31 +9,21 @@ export function Hero() {
       <div className="container mx-auto px-4 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h1 className="text-4xl lg:text-6xl font-bold text-[var(--axis-dark-blue)] mb-6">
+            <h2 className="text-4xl lg:text-6xl font-bold text-[var(--axis-dark-blue)] mb-6">
               Create custom boxes & packaging of your dreams
-            </h1>
+            </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-xl">
               Order personalized, high-quality custom printed packaging and branded boxes your customers will love all-in-one place.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/quote">
-                <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white px-8 py-3 text-lg">Request a Quote</Button>
+                <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">Request a Quote</Button>
               </Link>
               <Link to="/products">
-                <Button variant="outline" className="border-[var(--axis-mid-blue)] text-[var(--axis-mid-blue)] px-8 py-3 text-lg">
+                <Button variant="outline" className="border-[var(--axis-mid-blue)] text-[var(--axis-mid-blue)]">
                   Choose Packaging style
                 </Button>
               </Link>
-            </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[var(--axis-dark-blue)]">3,000+</span>
-                <span>brands big and small love us!</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[var(--axis-dark-blue)]">4.6</span>
-                <span>Google Reviews</span>
-              </div>
             </div>
           </div>
           <div className="relative">

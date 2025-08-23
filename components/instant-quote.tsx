@@ -161,7 +161,7 @@ Additional Requirements: ${formData.additionalRequirements}
             </CardHeader>
 
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit}>
+              <div>
                 {/* Step 1: Product Details */}
                 {step === 1 && (
                   <div className="space-y-6">
@@ -459,7 +459,8 @@ Additional Requirements: ${formData.additionalRequirements}
                     </Button>
                   ) : (
                     <Button
-                      type="submit"
+                      type="button"
+                      onClick={handleSubmit}
                       disabled={isSubmitting}
                       className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 px-6"
                     >
@@ -467,7 +468,7 @@ Additional Requirements: ${formData.additionalRequirements}
                     </Button>
                   )}
                 </div>
-              </form>
+              </div>
             </CardContent>
           </Card>
         </div>
