@@ -27,7 +27,7 @@ export function Hero() {
             </div>
           </div>
           <div className="relative">
-            <img src="/packify-hero-box1.png" alt="Packaging hero" className="w-full h-auto" />
+            <img src="/assets/packify-hero-box1.png" alt="Packaging hero" className="w-full h-auto" />
           </div>
         </div>
       </div>

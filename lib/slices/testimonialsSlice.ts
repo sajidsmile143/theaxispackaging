@@ -23,7 +23,7 @@ const initialState: TestimonialsState = {
       content:
         "Packify.ai delivered exceptional quality boxes for our product launch. The attention to detail and customer service was outstanding.",
       rating: 5,
-      image: "/packify-client-sarah.png",
+      image: "/assets/packify-client-sarah.png",
     },
     {
       id: "2",
@@ -32,7 +32,7 @@ const initialState: TestimonialsState = {
       content:
         "Their eco-friendly packaging solutions perfectly aligned with our brand values. Fast delivery and competitive pricing.",
       rating: 5,
-      image: "/packify-client-michael.png",
+      image: "/assets/packify-client-michael.png",
     },
     {
       id: "3",
@@ -41,7 +41,7 @@ const initialState: TestimonialsState = {
       content:
         "The custom cosmetic boxes exceeded our expectations. Beautiful design and sturdy construction that our customers love.",
       rating: 5,
-      image: "/packify-client-emily.png",
+      image: "/assets/packify-client-emily.png",
     },
   ],
   currentIndex: 0,

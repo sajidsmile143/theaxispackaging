@@ -12,9 +12,11 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-[var(--axis-orange)] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
+              <img 
+                src="/assets/logoaxispackaging.jpg" 
+                alt="Axis Packaging Logo" 
+                className="w-10 h-10 rounded-lg object-cover"
+              />
               <div>
                 <h3 className="text-xl font-bold">{COMPANY_INFO.name}</h3>
                 <p className="text-blue-100 text-sm">{COMPANY_INFO.tagline}</p>

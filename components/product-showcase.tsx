@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 
 export function ProductShowcase() {
   const items = [
-    { name: "Folding Cartons", img: "/packify-corrugated-boxes.png" },
-    { name: "Rigid Boxes", img: "/packify-luxury-boxes.png" },
-    { name: "Mailer Bags", img: "/packify-mailers.png" },
+    { name: "Folding Cartons", img: "/assets/packify-corrugated-boxes.png" },
+    { name: "Rigid Boxes", img: "/assets/packify-luxury-boxes.png" },
+    { name: "Mailer Bags", img: "/assets/packify-mailers.png" },
   ]
 
   return (

@@ -1,7 +1,7 @@
 export const COMPANY_INFO = {
   name: "Axis Packaging",
   tagline: "Premium Custom Packaging Solutions",
-  phone: "+923048338844",
+  phone: "+447727083773",
   email: "info@axispackaging.com",
   address: "123 Industrial Blvd, Manufacturing City, MC 12345",
   hours: "Mon-Fri: 8AM-6PM PST",
@@ -21,37 +21,37 @@ export const PRODUCT_CATEGORIES = [
     name: "Custom Boxes",
     description: "Tailored packaging solutions for your unique needs",
     icon: "📦",
-    image: "/packify-custom-boxes.png",
+    image: "/assets/packify-custom-boxes.png",
   },
   {
     name: "Retail Packaging",
     description: "Eye-catching retail displays and packaging",
     icon: "🛍️",
-    image: "/packify-retail-packaging.png",
+    image: "/assets/packify-retail-packaging.png",
   },
   {
     name: "Food Packaging",
     description: "Safe and compliant food packaging solutions",
     icon: "🍽️",
-    image: "/packify-food-containers.png",
+    image: "/assets/packify-food-containers.png",
   },
   {
     name: "Cosmetic Boxes",
     description: "Premium packaging for beauty and cosmetic products",
     icon: "💄",
-    image: "/packify-cosmetic-boxes.png",
+    image: "/assets/packify-cosmetic-boxes.png",
   },
   {
     name: "Electronics Packaging",
     description: "Protective packaging for electronic devices",
     icon: "📱",
-    image: "/packify-electronics-packaging.png",
+    image: "/assets/packify-electronics-packaging.png",
   },
   {
     name: "Pharmaceutical Boxes",
     description: "Compliant packaging for pharmaceutical products",
     icon: "💊",
-    image: "/packify-pharmaceutical.png",
+    image: "/assets/packify-pharmaceutical.png",
   },
 ]
 

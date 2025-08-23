@@ -38,9 +38,11 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-[var(--axis-orange)] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
-            </div>
+            <img 
+              src="/assets/logoaxispackaging.jpg" 
+              alt="Axis Packaging Logo" 
+              className="w-12 h-12 rounded-lg object-cover"
+            />
             <div>
               <h1 className="text-xl font-bold text-[var(--axis-dark-blue)]">{COMPANY_INFO.name}</h1>
               <p className="text-xs text-gray-600 hidden sm:block">{COMPANY_INFO.tagline}</p>

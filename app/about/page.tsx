@@ -34,19 +34,19 @@ export default function AboutPage() {
     {
       name: "Sarah Johnson",
       role: "CEO & Founder",
-      image: "/packify-team-ceo.png",
+              image: "/assets/packify-team-ceo.png",
       bio: "15+ years in packaging industry, passionate about sustainable solutions.",
     },
     {
       name: "Michael Chen",
       role: "Head of Design",
-      image: "/packify-team-designer.png",
+              image: "/assets/packify-team-designer.png",
       bio: "Award-winning designer specializing in brand-focused packaging solutions.",
     },
     {
       name: "Emily Rodriguez",
       role: "Operations Director",
-      image: "/packify-team-operations.png",
+              image: "/assets/packify-team-operations.png",
       bio: "Expert in manufacturing processes and quality assurance systems.",
     },
   ]
@@ -96,7 +96,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <img
-                  src="/packify-company-story.png"
+                  src="/assets/packify-company-story.png"
                   alt="Packify.ai facility and team"
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
