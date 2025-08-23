@@ -30,19 +30,23 @@ export default function IndustriesPage() {
       <section className="bg-gradient-to-r from-[var(--axis-dark-blue)] to-[var(--axis-mid-blue)] text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Industry-Specific Packaging Solutions
+            Shop by Industries
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Tailored packaging solutions designed specifically for your industry needs. 
-            From food and beverage to cosmetics and electronics, we have the expertise to deliver perfect packaging.
+            Find the perfect packaging solutions tailored to your industry niche. 
+            Each industry has specific requirements and we understand them all.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
-              Get Custom Quote
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
-              View All Products
-            </Button>
+            <Link to="/quote">
+              <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
+                Request a Quote
+              </Button>
+            </Link>
+            <Link to="/products">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
+                Browse Products
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

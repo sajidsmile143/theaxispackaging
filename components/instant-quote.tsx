@@ -58,12 +58,12 @@ Project Details:
 Additional Requirements: ${formData.additionalRequirements}
       `
 
-      // Send email using mailto link
-      const mailtoLink = `mailto:sajidmernstackdev@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
-      window.open(mailtoLink, '_blank')
-
-      // Simulate API call
+      // Simulate API call first
       setTimeout(() => {
+        // Send email using mailto link after form is complete
+        const mailtoLink = `mailto:sajidmernstackdev@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
+        window.open(mailtoLink, '_blank')
+        
         dispatch(setSubmitting(false))
         dispatch(setSubmitted(true))
         console.log("Quote request submitted:", formData)
