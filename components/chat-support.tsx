@@ -183,7 +183,7 @@ export function ChatSupport() {
       {/* WhatsApp Button */}
       <div className="fixed bottom-24 right-6 z-40">
         <Button
-          onClick={() => window.open("https://wa.me/923048338844", "_blank")}
+          onClick={() => window.open("https://wa.me/447727083773", "_blank")}
           className="rounded-full w-12 h-12 bg-green-500 hover:bg-green-600 shadow-lg"
           aria-label="Contact via WhatsApp"
         >

@@ -29,12 +29,41 @@ export function InstantQuote() {
     e.preventDefault()
     dispatch(setSubmitting(true))
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Create email content
+      const emailContent = `
+New Quote Request from Axis Packaging Website
+
+Contact Information:
+- Name: ${formData.contactInfo.name}
+- Email: ${formData.contactInfo.email}
+- Phone: ${formData.contactInfo.phone}
+- Company: ${formData.contactInfo.company}
+
+Project Details:
+- Product Type: ${formData.productType}
+- Quantity: ${formData.quantity}
+- Dimensions: ${formData.dimensions.length}" x ${formData.dimensions.width}" x ${formData.dimensions.height}"
+- Material: ${formData.material}
+- Printing: ${formData.printing}
+
+Additional Requirements: ${formData.additionalRequirements}
+      `
+
+      // Send email using mailto link
+      const mailtoLink = `mailto:theasxis.packaging@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
+      window.open(mailtoLink, '_blank')
+
+      // Simulate API call
+      setTimeout(() => {
+        dispatch(setSubmitting(false))
+        dispatch(setSubmitted(true))
+        console.log("Quote request submitted:", formData)
+      }, 2000)
+    } catch (error) {
+      console.error("Error submitting quote:", error)
       dispatch(setSubmitting(false))
-      dispatch(setSubmitted(true))
-      console.log("Quote request submitted:", formData)
-    }, 2000)
+    }
   }
 
   const nextStep = () => setStep(Math.min(step + 1, 3))

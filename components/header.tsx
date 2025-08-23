@@ -39,7 +39,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/assets/logoaxispackaging.jpg" 
+              src="/assets/logo.png" 
               alt="Axis Packaging Logo" 
               className="w-12 h-12 rounded-lg object-cover"
             />
