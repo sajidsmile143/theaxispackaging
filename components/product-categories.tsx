@@ -1,11 +1,24 @@
 "use client"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { PRODUCT_CATEGORIES } from "@/lib/constants"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Package, Star, Truck, Shield } from "lucide-react"
+import { ArrowRight, Package, Star, Truck, Shield, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function ProductCategories() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const productsPerPage = 6
+  const totalPages = Math.ceil(PRODUCT_CATEGORIES.length / productsPerPage)
+  const startIndex = (currentPage - 1) * productsPerPage
+  const endIndex = startIndex + productsPerPage
+  const currentProducts = PRODUCT_CATEGORIES.slice(startIndex, endIndex)
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -20,7 +33,7 @@ export function ProductCategories() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {PRODUCT_CATEGORIES.map((product) => (
+          {currentProducts.map((product) => (
             <Link key={product.slug} to={`/products/${product.slug}`}>
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <CardHeader className="pb-3">
@@ -54,6 +67,45 @@ export function ProductCategories() {
             </Link>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center space-x-2 mb-16">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="flex items-center space-x-1"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Previous
+            </Button>
+            
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                variant={currentPage === page ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(page)}
+                className={currentPage === page ? "bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90" : ""}
+              >
+                {page}
+              </Button>
+            ))}
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="flex items-center space-x-1"
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
 
         {/* Product Features */}
         <div className="grid md:grid-cols-4 gap-8 text-center">

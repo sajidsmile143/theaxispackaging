@@ -11,6 +11,10 @@ export const NAVIGATION_ITEMS = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "Industries", href: "/industries" },
+  { name: "Corrugated Styles", href: "/corrugated-styles" },
+  { name: "Corrugated Options", href: "/corrugated-options" },
+  { name: "Corrugated Inspirations", href: "/corrugated-inspirations" },
+  { name: "Packaging Services", href: "/packaging-services" },
   { name: "Sustainability", href: "/sustainability" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
@@ -286,6 +290,114 @@ export const INDUSTRIES = [
     icon: "🍷",
     image: "/assets/packify-custom-boxes.png",
     slug: "wine",
+  },
+]
+
+export const CORRUGATED_STYLES = [
+  {
+    name: "Single Wall Corrugated",
+    description: "Standard corrugated boxes with one layer of fluting",
+    image: "/assets/packify-corrugated-boxes.png",
+    slug: "single-wall",
+  },
+  {
+    name: "Double Wall Corrugated",
+    description: "Heavy-duty boxes with two layers of fluting for extra strength",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "double-wall",
+  },
+  {
+    name: "Triple Wall Corrugated",
+    description: "Maximum strength boxes with three layers of fluting",
+    image: "/assets/packify-shipping-boxes.png",
+    slug: "triple-wall",
+  },
+  {
+    name: "Die Cut Corrugated",
+    description: "Custom shaped corrugated boxes for unique packaging needs",
+    image: "/assets/packify-display-boxes.png",
+    slug: "die-cut",
+  },
+]
+
+export const CORRUGATED_OPTIONS = [
+  {
+    name: "E-Flute",
+    description: "Thin, smooth surface perfect for printing",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "e-flute",
+  },
+  {
+    name: "B-Flute",
+    description: "Good cushioning and compression resistance",
+    image: "/assets/packify-corrugated-boxes.png",
+    slug: "b-flute",
+  },
+  {
+    name: "C-Flute",
+    description: "Most common, excellent all-around performance",
+    image: "/assets/packify-shipping-boxes.png",
+    slug: "c-flute",
+  },
+  {
+    name: "BC-Flute",
+    description: "Double wall combination for maximum strength",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "bc-flute",
+  },
+]
+
+export const CORRUGATED_INSPIRATIONS = [
+  {
+    name: "Retail Display Boxes",
+    description: "Eye-catching displays for retail environments",
+    image: "/assets/packify-display-boxes.png",
+    slug: "retail-displays",
+  },
+  {
+    name: "Shipping Solutions",
+    description: "Durable shipping boxes for e-commerce",
+    image: "/assets/packify-shipping-boxes.png",
+    slug: "shipping-solutions",
+  },
+  {
+    name: "Product Packaging",
+    description: "Custom product packaging with branding",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "product-packaging",
+  },
+  {
+    name: "Point of Purchase",
+    description: "POP displays for in-store marketing",
+    image: "/assets/packify-display-packaging.png",
+    slug: "pop-displays",
+  },
+]
+
+export const PACKAGING_SERVICES = [
+  {
+    name: "Structural Design & Engineering",
+    description: "Our packaging experts design and engineer innovative structures",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "structural-design",
+  },
+  {
+    name: "Packaging Artwork Design",
+    description: "Professional artwork design for your packaging",
+    image: "/assets/packify-cosmetic-boxes.png",
+    slug: "artwork-design",
+  },
+  {
+    name: "Sample & Prototyping",
+    description: "Create physical samples and 3D prototypes",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "sampling-prototyping",
+  },
+  {
+    name: "Quality Control",
+    description: "Rigorous quality control and testing",
+    image: "/assets/packify-custom-boxes.png",
+    slug: "quality-control",
   },
 ]
 
