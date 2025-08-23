@@ -27,6 +27,13 @@ export function InstantQuote() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate required fields
+    if (!formData.productType || !formData.quantity || !formData.contactInfo.name || !formData.contactInfo.email) {
+      alert("Please fill in all required fields marked with *")
+      return
+    }
+    
     dispatch(setSubmitting(true))
 
     try {
@@ -170,7 +177,7 @@ Additional Requirements: ${formData.additionalRequirements}
                           <SelectTrigger>
                             <SelectValue placeholder="Select product type" />
                           </SelectTrigger>
-                          <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
                             <SelectItem value="folding-carton-boxes">Custom Folding Carton Boxes</SelectItem>
                             <SelectItem value="rigid-boxes">Premium Rigid Boxes</SelectItem>
                             <SelectItem value="box-inserts">Custom Box Inserts</SelectItem>
@@ -196,7 +203,7 @@ Additional Requirements: ${formData.additionalRequirements}
                           <SelectTrigger>
                             <SelectValue placeholder="Select quantity" />
                           </SelectTrigger>
-                          <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
                             <SelectItem value="100-500">100 - 500 units</SelectItem>
                             <SelectItem value="500-1000">500 - 1,000 units</SelectItem>
                             <SelectItem value="1000-5000">1,000 - 5,000 units</SelectItem>
@@ -259,7 +266,7 @@ Additional Requirements: ${formData.additionalRequirements}
                           <SelectTrigger>
                             <SelectValue placeholder="Select material" />
                           </SelectTrigger>
-                          <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
                             <SelectItem value="corrugated-e-flute">Corrugated E-Flute</SelectItem>
                             <SelectItem value="corrugated-b-flute">Corrugated B-Flute</SelectItem>
                             <SelectItem value="corrugated-c-flute">Corrugated C-Flute</SelectItem>
@@ -285,7 +292,7 @@ Additional Requirements: ${formData.additionalRequirements}
                           <SelectTrigger>
                             <SelectValue placeholder="Select printing" />
                           </SelectTrigger>
-                          <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
                             <SelectItem value="no-printing">No Printing</SelectItem>
                             <SelectItem value="1-color">1 Color Printing</SelectItem>
                             <SelectItem value="2-color">2 Color Printing</SelectItem>
@@ -312,7 +319,7 @@ Additional Requirements: ${formData.additionalRequirements}
                         <SelectTrigger>
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
-                        <SelectContent className="z-[100]" position="popper" sideOffset={4}>
+                        <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
                           <SelectItem value="rush-1-2-weeks">Rush (1-2 weeks)</SelectItem>
                           <SelectItem value="standard-3-4-weeks">Standard (3-4 weeks)</SelectItem>
                           <SelectItem value="extended-5-6-weeks">Extended (5-6 weeks)</SelectItem>

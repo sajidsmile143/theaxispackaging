@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer"
 import { ChatSupport } from "@/components/chat-support"
 import { SolutionFeatures } from "@/components/solution-features"
 import { ProductShowcase } from "@/components/product-showcase"
-import { AdditionalSections } from "@/components/additional-sections"
+import { IndustrySolutions } from "@/components/industry-solutions"
 
 export default function Home() {
   return (
@@ -15,9 +15,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <AdditionalSections />
         <SolutionFeatures />
         <ProductShowcase />
+        <IndustrySolutions />
         <InstantQuote />
         <FAQs />
         <Testimonials />

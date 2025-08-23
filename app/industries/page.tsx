@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ChatSupport } from "@/components/chat-support"
-import { INDUSTRIES } from "@/lib/constants"
+import { INDUSTRIES, CORRUGATED_STYLES, CORRUGATED_OPTIONS, CORRUGATED_INSPIRATIONS, PACKAGING_SERVICES } from "@/lib/constants"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Package, Factory, Users, Award, ChevronLeft, ChevronRight } from "lucide-react"
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom"
 
 export default function IndustriesPage() {
   const [currentPage, setCurrentPage] = useState(1)
-  const industriesPerPage = 8
+  const industriesPerPage = 25
   const totalPages = Math.ceil(INDUSTRIES.length / industriesPerPage)
   const startIndex = (currentPage - 1) * industriesPerPage
   const endIndex = startIndex + industriesPerPage
@@ -156,6 +156,127 @@ export default function IndustriesPage() {
               </Button>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Additional Sections */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          {/* Corrugated Box Styles */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Box Styles</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Explore our range of corrugated box styles designed for different applications and strength requirements
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {CORRUGATED_STYLES.slice(0, 4).map((style) => (
+                <Link key={style.name} to="/corrugated-styles" className="group">
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <img src={style.image} alt={style.name} className="w-full h-32 object-cover rounded-lg mb-4" />
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                        {style.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{style.description}</p>
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                        <span>Learn More</span>
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Corrugated Options */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Options</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose from various flute types and configurations to meet your specific packaging needs
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {CORRUGATED_OPTIONS.slice(0, 4).map((option) => (
+                <Link key={option.name} to="/corrugated-options" className="group">
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <img src={option.image} alt={option.name} className="w-full h-32 object-cover rounded-lg mb-4" />
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                        {option.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{option.description}</p>
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                        <span>Learn More</span>
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Corrugated Inspirations */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Inspirations</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Get inspired by creative corrugated packaging designs and innovative solutions
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {CORRUGATED_INSPIRATIONS.slice(0, 4).map((inspiration) => (
+                <Link key={inspiration.name} to="/corrugated-inspirations" className="group">
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <img src={inspiration.image} alt={inspiration.name} className="w-full h-32 object-cover rounded-lg mb-4" />
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                        {inspiration.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{inspiration.description}</p>
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                        <span>Learn More</span>
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Packaging Services */}
+          <div>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Packaging Services</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Comprehensive packaging services from design to delivery
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {PACKAGING_SERVICES.slice(0, 4).map((service) => (
+                <Link key={service.name} to="/packaging-services" className="group">
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <img src={service.image} alt={service.name} className="w-full h-32 object-cover rounded-lg mb-4" />
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                        {service.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                        <span>Learn More</span>
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
