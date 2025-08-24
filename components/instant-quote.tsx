@@ -71,7 +71,7 @@ export function InstantQuote() {
 
       await emailjs.send(
         "service_vhwzbeo", // Your service ID
-        "template_o9vbvc8", // Your template ID
+        "template_9epu9ft", // Your template ID
         templateParams
       );
 
