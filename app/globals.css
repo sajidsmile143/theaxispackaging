@@ -39,12 +39,11 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* Axis Packaging Professional Brand Colors */
-  --axis-primary-blue: #374151; /* Dark Gray (previously axis-dark-blue) */
-  --axis-secondary-blue: #6b7280; /* Medium Gray (previously axis-mid-blue) */
-  --axis-light-blue: #0ea5e9; /* Sky Blue (previously axis-orange) */
-  --axis-dark-gray: #0284c7; /* Darker Sky Blue (previously axis-yellow-orange) */
-  --axis-light-gray: #9ca3af; /* Light Gray for secondary elements */
+  /* Added Axis Packaging brand colors - Sky Blue & Dark Gray Theme */
+  --axis-dark-blue: #374151; /* Dark Gray */
+  --axis-mid-blue: #6b7280; /* Medium Gray */
+  --axis-orange: #0ea5e9; /* Sky Blue */
+  --axis-yellow-orange: #0284c7; /* Darker Sky Blue */
 }
 
 .dark {
@@ -125,11 +124,6 @@
   --color-axis-mid-blue: var(--axis-mid-blue);
   --color-axis-orange: var(--axis-orange);
   --color-axis-yellow-orange: var(--axis-yellow-orange);
-  --color-axis-primary-blue: var(--axis-primary-blue);
-  --color-axis-secondary-blue: var(--axis-secondary-blue);
-  --color-axis-light-blue: var(--axis-light-blue);
-  --color-axis-dark-gray: var(--axis-dark-gray);
-  --color-axis-light-gray: var(--axis-light-gray);
 }
 
 /* Removed @layer base section that was causing the build error */
