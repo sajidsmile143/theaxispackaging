@@ -125,6 +125,11 @@
   --color-axis-mid-blue: var(--axis-mid-blue);
   --color-axis-orange: var(--axis-orange);
   --color-axis-yellow-orange: var(--axis-yellow-orange);
+  --color-axis-primary-blue: var(--axis-primary-blue);
+  --color-axis-secondary-blue: var(--axis-secondary-blue);
+  --color-axis-light-blue: var(--axis-light-blue);
+  --color-axis-dark-gray: var(--axis-dark-gray);
+  --color-axis-light-gray: var(--axis-light-gray);
 }
 
 /* Removed @layer base section that was causing the build error */
