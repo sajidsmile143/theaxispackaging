@@ -1,81 +1,92 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { Upload, Calculator, Clock, CheckCircle } from "lucide-react"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
-  updateFormData,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  setSubmitted,
+  setSubmitting,
   updateContactInfo,
   updateDimensions,
-  setSubmitting,
-  setSubmitted,
-} from "@/lib/slices/quoteFormSlice"
+  updateFormData,
+} from "@/lib/slices/quoteFormSlice";
+import emailjs from "@emailjs/browser";
+import { Calculator, CheckCircle, Clock, Upload } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
+
+// Initialize EmailJS with your public key
+emailjs.init("shQGEnnog2UpWxhdL");
 
 export function InstantQuote() {
-  const dispatch = useAppDispatch()
-  const { formData, isSubmitting, submitted } = useAppSelector((state) => state.quoteForm)
-  const [step, setStep] = useState(1)
+  const dispatch = useAppDispatch();
+  const { formData, isSubmitting, submitted } = useAppSelector((state) => state.quoteForm);
+  const [step, setStep] = useState(1);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     // Validate required fields
-    if (!formData.productType || !formData.quantity || !formData.contactInfo.name || !formData.contactInfo.email) {
-      alert("Please fill in all required fields marked with *")
-      return
+    if (
+      !formData.productType ||
+      !formData.quantity ||
+      !formData.contactInfo.name ||
+      !formData.contactInfo.email
+    ) {
+      alert("Please fill in all required fields marked with *");
+      return;
     }
-    
-    dispatch(setSubmitting(true))
+
+    dispatch(setSubmitting(true));
 
     try {
-      // Create email content
-      const emailContent = `
-New Quote Request from Axis Packaging Website
+      const templateParams = {
+        to_email: "sajidmernstackdev@gmail.com",
+        from_name: formData.contactInfo.name,
+        from_email: formData.contactInfo.email,
+        from_phone: formData.contactInfo.phone || "Not provided",
+        from_company: formData.contactInfo.company || "Not provided",
+        product_type: formData.productType,
+        quantity: formData.quantity,
+        dimensions: `${formData.dimensions.length || "N/A"}" x ${
+          formData.dimensions.width || "N/A"
+        }" x ${formData.dimensions.height || "N/A"}"`,
+        material: formData.material || "Not specified",
+        printing: formData.printing || "Not specified",
+        timeline: formData.timeline || "Not specified",
+        additional_requirements: formData.additionalRequirements || "None",
+        subject: `New Quote Request - ${formData.contactInfo.name}`,
+      };
 
-Contact Information:
-- Name: ${formData.contactInfo.name}
-- Email: ${formData.contactInfo.email}
-- Phone: ${formData.contactInfo.phone}
-- Company: ${formData.contactInfo.company}
+      await emailjs.send(
+        "service_vhwzbeo", // Your service ID
+        "template_o9vbvc8", // Your template ID
+        templateParams
+      );
 
-Project Details:
-- Product Type: ${formData.productType}
-- Quantity: ${formData.quantity}
-- Dimensions: ${formData.dimensions.length}" x ${formData.dimensions.width}" x ${formData.dimensions.height}"
-- Material: ${formData.material}
-- Printing: ${formData.printing}
-- Timeline: ${formData.timeline}
-
-Additional Requirements: ${formData.additionalRequirements}
-      `
-
-      // Simulate API call first
-      setTimeout(() => {
-        // Send email using mailto link after form is complete
-        const mailtoLink = `mailto:sajidmernstackdev@gmail.com?subject=New Quote Request - ${formData.contactInfo.name}&body=${encodeURIComponent(emailContent)}`
-        window.open(mailtoLink, '_blank')
-        
-        dispatch(setSubmitting(false))
-        dispatch(setSubmitted(true))
-        console.log("Quote request submitted:", formData)
-      }, 2000)
+      dispatch(setSubmitted(true));
+      console.log("Quote request sent successfully!");
     } catch (error) {
-      console.error("Error submitting quote:", error)
-      dispatch(setSubmitting(false))
+      console.error("Error sending email:", error);
+      alert("Failed to send quote request. Please try again.");
+    } finally {
+      dispatch(setSubmitting(false));
     }
-  }
+  };
 
-  const nextStep = () => setStep(Math.min(step + 1, 3))
-  const prevStep = () => setStep(Math.max(step - 1, 1))
+  const nextStep = () => setStep(Math.min(step + 1, 3));
+  const prevStep = () => setStep(Math.max(step - 1, 1));
 
   if (submitted) {
     return (
@@ -85,13 +96,17 @@ Additional Requirements: ${formData.additionalRequirements}
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-10 w-10 text-green-600" />
             </div>
-            <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Quote Request Submitted!</h2>
+            <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
+              Quote Request Submitted!
+            </h2>
             <p className="text-xl text-gray-600 mb-6">
-              Thank you for your interest! Our team will review your requirements and get back to you within 24 hours
-              with a detailed quote.
+              Thank you for your interest! Our team will review your requirements and get back to
+              you within 24 hours with a detailed quote.
             </p>
             <div className="bg-white rounded-lg p-6 shadow-lg">
-              <h3 className="font-semibold text-[var(--axis-dark-blue)] mb-4">What happens next?</h3>
+              <h3 className="font-semibold text-[var(--axis-dark-blue)] mb-4">
+                What happens next?
+              </h3>
               <div className="space-y-3 text-left">
                 <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 bg-[var(--axis-orange)] text-white rounded-full flex items-center justify-center text-sm font-bold">
@@ -116,7 +131,7 @@ Additional Requirements: ${formData.additionalRequirements}
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -165,25 +180,33 @@ Additional Requirements: ${formData.additionalRequirements}
                 {/* Step 1: Product Details */}
                 {step === 1 && (
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">Product Details</h3>
+                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">
+                      Product Details
+                    </h3>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="productType">Product Type *</Label>
                         <Select
                           value={formData.productType}
-                          onValueChange={(value) => dispatch(updateFormData({ productType: value }))}
+                          onValueChange={(value) =>
+                            dispatch(updateFormData({ productType: value }))
+                          }
                         >
                           <SelectTrigger>
                             <SelectValue placeholder="Select product type" />
                           </SelectTrigger>
                           <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
-                            <SelectItem value="folding-carton-boxes">Custom Folding Carton Boxes</SelectItem>
+                            <SelectItem value="folding-carton-boxes">
+                              Custom Folding Carton Boxes
+                            </SelectItem>
                             <SelectItem value="rigid-boxes">Premium Rigid Boxes</SelectItem>
                             <SelectItem value="box-inserts">Custom Box Inserts</SelectItem>
                             <SelectItem value="reusable-bags">Custom Reusable Bags</SelectItem>
                             <SelectItem value="mailer-bags">Printed Mailer Bags</SelectItem>
-                            <SelectItem value="flexible-pouches">Flexible Packaging Pouches</SelectItem>
+                            <SelectItem value="flexible-pouches">
+                              Flexible Packaging Pouches
+                            </SelectItem>
                             <SelectItem value="tin-containers">Metal Tin Containers</SelectItem>
                             <SelectItem value="pop-displays">Retail POP Displays</SelectItem>
                             <SelectItem value="stickers-labels">Vinyl Stickers Labels</SelectItem>
@@ -215,7 +238,9 @@ Additional Requirements: ${formData.additionalRequirements}
                     </div>
 
                     <div className="mt-8">
-                      <Label className="text-base font-medium mb-3 block">Dimensions (inches)</Label>
+                      <Label className="text-base font-medium mb-3 block">
+                        Dimensions (inches)
+                      </Label>
                       <div className="grid grid-cols-3 gap-4">
                         <div>
                           <Label htmlFor="length" className="text-sm">
@@ -333,7 +358,9 @@ Additional Requirements: ${formData.additionalRequirements}
                 {/* Step 2: Contact Information */}
                 {step === 2 && (
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">Contact Information</h3>
+                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">
+                      Contact Information
+                    </h3>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
@@ -390,7 +417,9 @@ Additional Requirements: ${formData.additionalRequirements}
                 {/* Step 3: Additional Requirements */}
                 {step === 3 && (
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">Additional Requirements</h3>
+                    <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-4">
+                      Additional Requirements
+                    </h3>
 
                     <div>
                       <Label htmlFor="requirements">Special Requirements or Notes</Label>
@@ -399,26 +428,37 @@ Additional Requirements: ${formData.additionalRequirements}
                         placeholder="Tell us about any special requirements, design preferences, or additional details..."
                         rows={4}
                         value={formData.additionalRequirements}
-                        onChange={(e) => dispatch(updateFormData({ additionalRequirements: e.target.value }))}
+                        onChange={(e) =>
+                          dispatch(updateFormData({ additionalRequirements: e.target.value }))
+                        }
                       />
                     </div>
 
                     <div>
-                      <Label className="text-base font-medium mb-3 block">Upload Design Files (Optional)</Label>
+                      <Label className="text-base font-medium mb-3 block">
+                        Upload Design Files (Optional)
+                      </Label>
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[var(--axis-orange)] transition-colors">
                         <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                         <p className="text-gray-600 mb-2">
                           Drag and drop your files here, or{" "}
-                          <button type="button" className="text-[var(--axis-orange)] hover:underline">
+                          <button
+                            type="button"
+                            className="text-[var(--axis-orange)] hover:underline"
+                          >
                             browse
                           </button>
                         </p>
-                        <p className="text-sm text-gray-500">Supports: PDF, AI, PSD, JPG, PNG (Max 10MB each)</p>
+                        <p className="text-sm text-gray-500">
+                          Supports: PDF, AI, PSD, JPG, PNG (Max 10MB each)
+                        </p>
                       </div>
                     </div>
 
                     <div className="bg-blue-50 rounded-lg p-6">
-                      <h4 className="font-semibold text-[var(--axis-dark-blue)] mb-2">What happens next?</h4>
+                      <h4 className="font-semibold text-[var(--axis-dark-blue)] mb-2">
+                        What happens next?
+                      </h4>
                       <ul className="space-y-2 text-sm text-gray-600">
                         <li className="flex items-center space-x-2">
                           <CheckCircle className="h-4 w-4 text-green-500" />
@@ -474,5 +514,5 @@ Additional Requirements: ${formData.additionalRequirements}
         </div>
       </div>
     </section>
-  )
+  );
 }
