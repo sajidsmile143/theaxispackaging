@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Top bar with contact info */}
-      <div className="bg-[var(--axis-primary-blue)] text-white py-2">
+      <div className="bg-[var(--axis-orange)] text-white py-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="flex items-center gap-4 mb-2 sm:mb-0">
@@ -69,13 +69,13 @@ export function Header() {
             <Link to="/quote">
               <Button
                 variant="outline"
-                className="border-[var(--axis-light-gray)] text-[var(--axis-light-gray)] hover:bg-[var(--axis-light-gray)] hover:text-white bg-transparent"
+                className="border-[var(--axis-light-gray)] text-[var(--axis-mid-blue)] hover:bg-[var(--axis-mid-blue)] hover:text-white bg-transparent"
               >
                 Get Quote
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-[var(--axis-secondary-blue)] hover:bg-[var(--axis-secondary-blue)]/90 text-white">
+              <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
                 Call Now
               </Button>
             </Link>
