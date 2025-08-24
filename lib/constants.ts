@@ -1,11 +1,11 @@
 export const COMPANY_INFO = {
   name: "Axis Packaging",
   tagline: "Premium Custom Packaging Solutions",
-  phone: "+447727083773",
+  phone: "+923158152434",
   email: "sajidmernstackdev@gmail.com",
   address: "123 Industrial Blvd, Manufacturing City, MC 12345",
   hours: "Mon-Fri: 8AM-6PM PST",
-}
+};
 
 export const NAVIGATION_ITEMS = [
   { name: "Home", href: "/" },
@@ -15,7 +15,7 @@ export const NAVIGATION_ITEMS = [
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "MOQ", href: "/moq" },
-]
+];
 
 export const PRODUCT_CATEGORIES = [
   {
@@ -102,14 +102,14 @@ export const PRODUCT_CATEGORIES = [
     image: "/assets/packify-eco-friendly-packaging.png",
     slug: "eco-friendly",
   },
-]
+];
 
 export const TRUST_INDICATORS = [
   { text: "10+ Years Experience", icon: "⭐" },
   { text: "ISO 9001 Certified", icon: "🏆" },
   { text: "24/7 Customer Support", icon: "📞" },
   { text: "Free Design Consultation", icon: "🎨" },
-]
+];
 
 export const INDUSTRIES = [
   {
@@ -287,7 +287,7 @@ export const INDUSTRIES = [
     image: "/assets/packify-custom-boxes.png",
     slug: "wine",
   },
-]
+];
 
 export const CORRUGATED_STYLES = [
   {
@@ -314,7 +314,7 @@ export const CORRUGATED_STYLES = [
     image: "/assets/packify-display-boxes.png",
     slug: "die-cut",
   },
-]
+];
 
 export const CORRUGATED_OPTIONS = [
   {
@@ -341,7 +341,7 @@ export const CORRUGATED_OPTIONS = [
     image: "/assets/packify-custom-boxes.png",
     slug: "bc-flute",
   },
-]
+];
 
 export const CORRUGATED_INSPIRATIONS = [
   {
@@ -368,7 +368,7 @@ export const CORRUGATED_INSPIRATIONS = [
     image: "/assets/packify-display-packaging.png",
     slug: "pop-displays",
   },
-]
+];
 
 export const PACKAGING_SERVICES = [
   {
@@ -395,7 +395,7 @@ export const PACKAGING_SERVICES = [
     image: "/assets/packify-custom-boxes.png",
     slug: "quality-control",
   },
-]
+];
 
 export const CERTIFICATIONS = [
   "ISO 9001:2015",
@@ -403,4 +403,4 @@ export const CERTIFICATIONS = [
   "FDA Approved Materials",
   "ROHS Compliant",
   "Recyclable Materials",
-]
+];

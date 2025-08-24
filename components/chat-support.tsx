@@ -1,73 +1,73 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { MessageCircle, X, Send, User, Bot } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Bot, MessageCircle, Send, User, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface ChatMessage {
-  id: string
-  text: string
-  sender: 'user' | 'bot'
-  timestamp: Date
+  id: string;
+  text: string;
+  sender: "user" | "bot";
+  timestamp: Date;
 }
 
 export function ChatSupport() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [message, setMessage] = useState("")
+  const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      id: '1',
+      id: "1",
       text: "Hello! How can we help you with your packaging needs today?",
-      sender: 'bot',
-      timestamp: new Date()
-    }
-  ])
-  const [isTyping, setIsTyping] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+      sender: "bot",
+      timestamp: new Date(),
+    },
+  ]);
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
   const botResponses = [
     "Thank you for your message! Our team will get back to you shortly.",
     "That's a great question! Let me connect you with our packaging specialist.",
     "I understand your requirements. Would you like to schedule a consultation?",
     "Perfect! I'll forward your inquiry to our sales team for a custom quote.",
-    "Thanks for reaching out! We offer competitive pricing and fast turnaround times."
-  ]
+    "Thanks for reaching out! We offer competitive pricing and fast turnaround times.",
+  ];
 
   const handleSendMessage = () => {
     if (message.trim()) {
       const userMessage: ChatMessage = {
         id: Date.now().toString(),
         text: message.trim(),
-        sender: 'user',
-        timestamp: new Date()
-      }
-      
-      setMessages(prev => [...prev, userMessage])
-      setMessage("")
-      setIsTyping(true)
+        sender: "user",
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, userMessage]);
+      setMessage("");
+      setIsTyping(true);
 
       // Simulate bot response
       setTimeout(() => {
-        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)]
+        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
         const botMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
           text: randomResponse,
-          sender: 'bot',
-          timestamp: new Date()
-        }
-        setMessages(prev => [...prev, botMessage])
-        setIsTyping(false)
-      }, 1000 + Math.random() * 2000)
+          sender: "bot",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, botMessage]);
+        setIsTyping(false);
+      }, 1000 + Math.random() * 2000);
     }
-  }
+  };
 
   return (
     <>
@@ -93,7 +93,12 @@ export function ChatSupport() {
               <h3 className="font-semibold">Live Chat Support</h3>
               <p className="text-sm opacity-90">We're here to help!</p>
             </div>
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="text-white hover:bg-white/20">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsOpen(false)}
+              className="text-white hover:bg-white/20"
+            >
               <X className="h-4 w-4" />
             </Button>
           </div>
@@ -104,32 +109,43 @@ export function ChatSupport() {
               {messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
                     className={`flex items-start gap-2 max-w-xs ${
-                      msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
+                      msg.sender === "user" ? "flex-row-reverse" : "flex-row"
                     }`}
                   >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-                      msg.sender === 'user' 
-                        ? 'bg-[var(--axis-orange)] text-white' 
-                        : 'bg-gray-300 text-gray-600'
-                    }`}>
-                      {msg.sender === 'user' ? <User className="w-3 h-3" /> : <Bot className="w-3 h-3" />}
+                    <div
+                      className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
+                        msg.sender === "user"
+                          ? "bg-[var(--axis-orange)] text-white"
+                          : "bg-gray-300 text-gray-600"
+                      }`}
+                    >
+                      {msg.sender === "user" ? (
+                        <User className="w-3 h-3" />
+                      ) : (
+                        <Bot className="w-3 h-3" />
+                      )}
                     </div>
                     <div
                       className={`p-3 rounded-lg ${
-                        msg.sender === 'user'
-                          ? 'bg-[var(--axis-orange)] text-white'
-                          : 'bg-gray-100 text-gray-800'
+                        msg.sender === "user"
+                          ? "bg-[var(--axis-orange)] text-white"
+                          : "bg-gray-100 text-gray-800"
                       }`}
                     >
                       <p className="text-sm">{msg.text}</p>
-                      <span className={`text-xs ${
-                        msg.sender === 'user' ? 'text-orange-100' : 'text-gray-500'
-                      }`}>
-                        {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      <span
+                        className={`text-xs ${
+                          msg.sender === "user" ? "text-orange-100" : "text-gray-500"
+                        }`}
+                      >
+                        {msg.timestamp.toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
                       </span>
                     </div>
                   </div>
@@ -144,8 +160,14 @@ export function ChatSupport() {
                     <div className="bg-gray-100 p-3 rounded-lg">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -183,7 +205,12 @@ export function ChatSupport() {
       {/* WhatsApp Button */}
       <div className="fixed bottom-24 right-6 z-40">
         <Button
-          onClick={() => window.open("https://wa.me/447727083773?text=Hi, I'm interested in custom packaging solutions from Axis Packaging", "_blank")}
+          onClick={() =>
+            window.open(
+              "https://wa.me/923158152434?text=Hi, I'm interested in custom packaging solutions from Axis Packaging",
+              "_blank"
+            )
+          }
           className="rounded-full w-12 h-12 bg-green-500 hover:bg-green-600 shadow-lg"
           aria-label="Contact via WhatsApp"
         >
@@ -193,5 +220,5 @@ export function ChatSupport() {
         </Button>
       </div>
     </>
-  )
+  );
 }
