@@ -121,11 +121,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Added Axis Packaging brand colors to theme */
-  --color-axis-primary-blue: var(--axis-primary-blue);
-  --color-axis-secondary-blue: var(--axis-secondary-blue);
-  --color-axis-light-blue: var(--axis-light-blue);
-  --color-axis-dark-gray: var(--axis-dark-gray);
-  --color-axis-light-gray: var(--axis-light-gray);
+  --color-axis-dark-blue: var(--axis-dark-blue);
+  --color-axis-mid-blue: var(--axis-mid-blue);
+  --color-axis-orange: var(--axis-orange);
+  --color-axis-yellow-orange: var(--axis-yellow-orange);
 }
 
 /* Removed @layer base section that was causing the build error */
