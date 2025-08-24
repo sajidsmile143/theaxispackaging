@@ -52,7 +52,7 @@ export function InstantQuote() {
 
     try {
       const templateParams = {
-        to_email: "sajidmernstackdev@gmail.com",
+        to_email: "theasxis.packaging@gmail.com",
         from_name: formData.contactInfo.name,
         from_email: formData.contactInfo.email,
         from_phone: formData.contactInfo.phone || "Not provided",

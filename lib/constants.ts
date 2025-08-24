@@ -2,7 +2,7 @@ export const COMPANY_INFO = {
   name: "Axis Packaging",
   tagline: "Premium Custom Packaging Solutions",
   phone: "+447727083773",
-  email: "sajidmernstackdev@gmail.com",
+  email: "theasxis.packaging@gmail.com",
   address: "123 Industrial Blvd, Manufacturing City, MC 12345",
   hours: "Mon-Fri: 8AM-6PM PST",
 };
