@@ -41,7 +41,7 @@ export default function IndustriesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[var( --axis-dark-gray)] to-[var(--axis-mid-blue)] text-white py-20">
+      <section className="bg-gradient-to-r from-[var(--axis-dark-blue)] to-[var(--axis-mid-blue)] text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Shop by Industries</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
@@ -52,7 +52,7 @@ export default function IndustriesPage() {
             <Link to="/quote">
               <Button
                 size="lg"
-                className="bg-[var(--axis-primary-skyblue)] hover:bg-[var(--axis-primary-skyblue)]/90"
+                className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
               >
                 Request a Quote
               </Button>
@@ -61,7 +61,7 @@ export default function IndustriesPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[var( --axis-dark-gray)]"
+                className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
               >
                 Browse Products
               </Button>
@@ -75,23 +75,23 @@ export default function IndustriesPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <Package className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">25+</h3>
+              <Package className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">25+</h3>
               <p className="text-gray-600">Industries Served</p>
             </div>
             <div className="flex flex-col items-center">
-              <Factory className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">50+</h3>
+              <Factory className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">50+</h3>
               <p className="text-gray-600">Certified Facilities</p>
             </div>
             <div className="flex flex-col items-center">
-              <Users className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">3000+</h3>
+              <Users className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">3000+</h3>
               <p className="text-gray-600">Happy Clients</p>
             </div>
             <div className="flex flex-col items-center">
-              <Award className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">15+</h3>
+              <Award className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">15+</h3>
               <p className="text-gray-600">Years Experience</p>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function IndustriesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-gray)] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-blue)] mb-4">
               Shop by Industry
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -118,11 +118,11 @@ export default function IndustriesPage() {
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
                       <span className="text-2xl">{industry.icon}</span>
-                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[var( --axis-primary-skyblue)] transition-colors" />
+                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[var(--axis-orange)] transition-colors" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <CardTitle className="text-lg mb-2 text-[var(--axis-dark-gray)]">
+                    <CardTitle className="text-lg mb-2 text-[var(--axis-dark-blue)]">
                       {industry.name}
                     </CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
@@ -163,7 +163,7 @@ export default function IndustriesPage() {
                   onClick={() => handlePageChange(page)}
                   className={
                     currentPage === page
-                      ? "bg-[var(--axis-primary-skyblue)] hover:bg-[var(--axis-primary-skyblue)]/90"
+                      ? "bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
                       : ""
                   }
                 >
@@ -192,7 +192,7 @@ export default function IndustriesPage() {
           {/* Corrugated Box Styles */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
                 Corrugated Box Styles
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -210,11 +210,11 @@ export default function IndustriesPage() {
                         alt={style.name}
                         className="w-full h-32 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
                         {style.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{style.description}</p>
-                      <div className="flex items-center text-[var( --axis-primary-skyblue)] font-medium">
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -228,7 +228,7 @@ export default function IndustriesPage() {
           {/* Corrugated Options */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
                 Corrugated Options
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -246,11 +246,11 @@ export default function IndustriesPage() {
                         alt={option.name}
                         className="w-full h-32 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="text-lg font-semibold text-[var(--axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
                         {option.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{option.description}</p>
-                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -264,7 +264,7 @@ export default function IndustriesPage() {
           {/* Corrugated Inspirations */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
                 Corrugated Inspirations
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -281,11 +281,11 @@ export default function IndustriesPage() {
                         alt={inspiration.name}
                         className="w-full h-32 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
                         {inspiration.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{inspiration.description}</p>
-                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -299,7 +299,7 @@ export default function IndustriesPage() {
           {/* Packaging Services */}
           <div>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-4">
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
                 Packaging Services
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -316,11 +316,11 @@ export default function IndustriesPage() {
                         alt={service.name}
                         className="w-full h-32 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
                         {service.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
+                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -334,7 +334,7 @@ export default function IndustriesPage() {
       </section>
 
       {/* Industry Solutions CTA */}
-      <section className="py-16 bg-[var( --axis-dark-gray)] text-white">
+      <section className="py-16 bg-[var(--axis-dark-blue)] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Need Industry-Specific Solutions?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -342,19 +342,24 @@ export default function IndustriesPage() {
             industry. Let us create the perfect packaging solution for your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-[var( --axis-primary-skyblue)] hover:bg-[var( --axis-primary-skyblue)]/90"
-            >
-              Schedule Consultation
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[var( --axis-dark-gray)]"
-            >
-              Download Catalog
-            </Button>
+            <Link to="/contact?from=industries">
+              <Button
+                size="lg"
+                className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
+              >
+                Schedule Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/quote">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
+              >
+                Download Catalog
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -363,7 +368,7 @@ export default function IndustriesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[var( --axis-dark-gray)] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-blue)] mb-4">
               Why Choose Axis Packaging for Industry Solutions?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -373,10 +378,10 @@ export default function IndustriesPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Package className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
                 Industry Expertise
               </h3>
               <p className="text-gray-600">
@@ -386,10 +391,10 @@ export default function IndustriesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Factory className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
                 Certified Manufacturing
               </h3>
               <p className="text-gray-600">
@@ -399,10 +404,10 @@ export default function IndustriesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
                 Quality Assurance
               </h3>
               <p className="text-gray-600">
