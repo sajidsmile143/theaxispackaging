@@ -1,49 +1,68 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ChatSupport } from "@/components/chat-support"
-import { INDUSTRIES, CORRUGATED_STYLES, CORRUGATED_OPTIONS, CORRUGATED_INSPIRATIONS, PACKAGING_SERVICES } from "@/lib/constants"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Package, Factory, Users, Award, ChevronLeft, ChevronRight } from "lucide-react"
-import { Link } from "react-router-dom"
+import { ChatSupport } from "@/components/chat-support";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  CORRUGATED_INSPIRATIONS,
+  CORRUGATED_OPTIONS,
+  CORRUGATED_STYLES,
+  INDUSTRIES,
+  PACKAGING_SERVICES,
+} from "@/lib/constants";
+import {
+  ArrowRight,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  Factory,
+  Package,
+  Users,
+} from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function IndustriesPage() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const industriesPerPage = 25
-  const totalPages = Math.ceil(INDUSTRIES.length / industriesPerPage)
-  const startIndex = (currentPage - 1) * industriesPerPage
-  const endIndex = startIndex + industriesPerPage
-  const currentIndustries = INDUSTRIES.slice(startIndex, endIndex)
+  const [currentPage, setCurrentPage] = useState(1);
+  const industriesPerPage = 25;
+  const totalPages = Math.ceil(INDUSTRIES.length / industriesPerPage);
+  const startIndex = (currentPage - 1) * industriesPerPage;
+  const endIndex = startIndex + industriesPerPage;
+  const currentIndustries = INDUSTRIES.slice(startIndex, endIndex);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[var(--axis-dark-blue)] to-[var(--axis-mid-blue)] text-white py-20">
+      <section className="bg-gradient-to-r from-[var( --axis-dark-gray)] to-[var(--axis-mid-blue)] text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Shop by Industries
-          </h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Shop by Industries</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Find the perfect packaging solutions tailored to your industry niche. 
-            Each industry has specific requirements and we understand them all.
+            Find the perfect packaging solutions tailored to your industry niche. Each industry has
+            specific requirements and we understand them all.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/quote">
-              <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
+              <Button
+                size="lg"
+                className="bg-[var(--axis-primary-skyblue)] hover:bg-[var(--axis-primary-skyblue)]/90"
+              >
                 Request a Quote
               </Button>
             </Link>
             <Link to="/products">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[var( --axis-dark-gray)]"
+              >
                 Browse Products
               </Button>
             </Link>
@@ -56,23 +75,23 @@ export default function IndustriesPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <Package className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">25+</h3>
+              <Package className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">25+</h3>
               <p className="text-gray-600">Industries Served</p>
             </div>
             <div className="flex flex-col items-center">
-              <Factory className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">50+</h3>
+              <Factory className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">50+</h3>
               <p className="text-gray-600">Certified Facilities</p>
             </div>
             <div className="flex flex-col items-center">
-              <Users className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">3000+</h3>
+              <Users className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">3000+</h3>
               <p className="text-gray-600">Happy Clients</p>
             </div>
             <div className="flex flex-col items-center">
-              <Award className="h-12 w-12 text-[var(--axis-orange)] mb-4" />
-              <h3 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">15+</h3>
+              <Award className="h-12 w-12 text-[var(--axis-primary-skyblue)] mb-4" />
+              <h3 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-2">15+</h3>
               <p className="text-gray-600">Years Experience</p>
             </div>
           </div>
@@ -83,12 +102,12 @@ export default function IndustriesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-blue)] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-gray)] mb-4">
               Shop by Industry
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find the perfect packaging solutions tailored to your industry niche. 
-              Each industry has specific requirements and we understand them all.
+              Find the perfect packaging solutions tailored to your industry niche. Each industry
+              has specific requirements and we understand them all.
             </p>
           </div>
 
@@ -99,19 +118,19 @@ export default function IndustriesPage() {
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
                       <span className="text-2xl">{industry.icon}</span>
-                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[var(--axis-orange)] transition-colors" />
+                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[var( --axis-primary-skyblue)] transition-colors" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <CardTitle className="text-lg mb-2 text-[var(--axis-dark-blue)]">
+                    <CardTitle className="text-lg mb-2 text-[var(--axis-dark-gray)]">
                       {industry.name}
                     </CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
                       {industry.description}
                     </CardDescription>
                     <div className="mt-4">
-                      <img 
-                        src={industry.image} 
+                      <img
+                        src={industry.image}
                         alt={industry.name}
                         className="w-full h-32 object-cover rounded-lg"
                       />
@@ -135,19 +154,23 @@ export default function IndustriesPage() {
                 <ChevronLeft className="h-4 w-4" />
                 Previous
               </Button>
-              
+
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <Button
                   key={page}
                   variant={currentPage === page ? "default" : "outline"}
                   size="sm"
                   onClick={() => handlePageChange(page)}
-                  className={currentPage === page ? "bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90" : ""}
+                  className={
+                    currentPage === page
+                      ? "bg-[var(--axis-primary-skyblue)] hover:bg-[var(--axis-primary-skyblue)]/90"
+                      : ""
+                  }
                 >
                   {page}
                 </Button>
               ))}
-              
+
               <Button
                 variant="outline"
                 size="sm"
@@ -169,9 +192,12 @@ export default function IndustriesPage() {
           {/* Corrugated Box Styles */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Box Styles</h2>
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+                Corrugated Box Styles
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Explore our range of corrugated box styles designed for different applications and strength requirements
+                Explore our range of corrugated box styles designed for different applications and
+                strength requirements
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -179,12 +205,16 @@ export default function IndustriesPage() {
                 <Link key={style.name} to="/corrugated-styles" className="group">
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <img src={style.image} alt={style.name} className="w-full h-32 object-cover rounded-lg mb-4" />
-                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                      <img
+                        src={style.image}
+                        alt={style.name}
+                        className="w-full h-32 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
                         {style.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{style.description}</p>
-                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                      <div className="flex items-center text-[var( --axis-primary-skyblue)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -198,9 +228,12 @@ export default function IndustriesPage() {
           {/* Corrugated Options */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Options</h2>
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+                Corrugated Options
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Choose from various flute types and configurations to meet your specific packaging needs
+                Choose from various flute types and configurations to meet your specific packaging
+                needs
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -208,12 +241,16 @@ export default function IndustriesPage() {
                 <Link key={option.name} to="/corrugated-options" className="group">
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <img src={option.image} alt={option.name} className="w-full h-32 object-cover rounded-lg mb-4" />
-                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                      <img
+                        src={option.image}
+                        alt={option.name}
+                        className="w-full h-32 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
                         {option.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{option.description}</p>
-                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -227,7 +264,9 @@ export default function IndustriesPage() {
           {/* Corrugated Inspirations */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Corrugated Inspirations</h2>
+              <h2 className="text-3xl font-bold text-[var(--axis-dark-gray)] mb-4">
+                Corrugated Inspirations
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Get inspired by creative corrugated packaging designs and innovative solutions
               </p>
@@ -237,12 +276,16 @@ export default function IndustriesPage() {
                 <Link key={inspiration.name} to="/corrugated-inspirations" className="group">
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <img src={inspiration.image} alt={inspiration.name} className="w-full h-32 object-cover rounded-lg mb-4" />
-                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                      <img
+                        src={inspiration.image}
+                        alt={inspiration.name}
+                        className="w-full h-32 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
                         {inspiration.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{inspiration.description}</p>
-                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -256,7 +299,9 @@ export default function IndustriesPage() {
           {/* Packaging Services */}
           <div>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Packaging Services</h2>
+              <h2 className="text-3xl font-bold text-[var( --axis-dark-gray)] mb-4">
+                Packaging Services
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive packaging services from design to delivery
               </p>
@@ -266,12 +311,16 @@ export default function IndustriesPage() {
                 <Link key={service.name} to="/packaging-services" className="group">
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <img src={service.image} alt={service.name} className="w-full h-32 object-cover rounded-lg mb-4" />
-                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2 group-hover:text-[var(--axis-orange)] transition-colors">
+                      <img
+                        src={service.image}
+                        alt={service.name}
+                        className="w-full h-32 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-semibold text-[var( --axis-dark-gray)] mb-2 group-hover:text-[var( --axis-primary-skyblue)] transition-colors">
                         {service.name}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                      <div className="flex items-center text-[var(--axis-orange)] font-medium">
+                      <div className="flex items-center text-[var(--axis-primary-skyblue)] font-medium">
                         <span>Learn More</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -285,20 +334,25 @@ export default function IndustriesPage() {
       </section>
 
       {/* Industry Solutions CTA */}
-      <section className="py-16 bg-[var(--axis-dark-blue)] text-white">
+      <section className="py-16 bg-[var( --axis-dark-gray)] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Need Industry-Specific Solutions?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Need Industry-Specific Solutions?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Our packaging experts understand the unique challenges and requirements of each industry. 
-            Let us create the perfect packaging solution for your business.
+            Our packaging experts understand the unique challenges and requirements of each
+            industry. Let us create the perfect packaging solution for your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
+            <Button
+              size="lg"
+              className="bg-[var( --axis-primary-skyblue)] hover:bg-[var( --axis-primary-skyblue)]/90"
+            >
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[var( --axis-dark-gray)]"
+            >
               Download Catalog
             </Button>
           </div>
@@ -309,7 +363,7 @@ export default function IndustriesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--axis-dark-blue)] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var( --axis-dark-gray)] mb-4">
               Why Choose Axis Packaging for Industry Solutions?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -319,34 +373,36 @@ export default function IndustriesPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Package className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
+              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
                 Industry Expertise
               </h3>
               <p className="text-gray-600">
-                Deep understanding of industry regulations, requirements, and best practices for each sector.
+                Deep understanding of industry regulations, requirements, and best practices for
+                each sector.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Factory className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
+              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
                 Certified Manufacturing
               </h3>
               <p className="text-gray-600">
-                Access to certified facilities worldwide ensuring quality and compliance for every industry.
+                Access to certified facilities worldwide ensuring quality and compliance for every
+                industry.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--axis-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[var( --axis-primary-skyblue)] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-3">
+              <h3 className="text-xl font-semibold text-[var( --axis-dark-gray)] mb-3">
                 Quality Assurance
               </h3>
               <p className="text-gray-600">
@@ -360,5 +416,5 @@ export default function IndustriesPage() {
       <Footer />
       <ChatSupport />
     </div>
-  )
-} 
+  );
+}

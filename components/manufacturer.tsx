@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Factory, Shield, Truck, Users, Clock } from "lucide-react"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Clock, Factory, Shield, Truck, Users } from "lucide-react";
 
 export function Manufacturer() {
   const capabilities = [
@@ -31,7 +31,7 @@ export function Manufacturer() {
       description: "Rigorous quality control at every step of production",
       stat: "99.9% Quality",
     },
-  ]
+  ];
 
   const processes = [
     "Design Consultation",
@@ -42,7 +42,7 @@ export function Manufacturer() {
     "Quality Control",
     "Packaging & Shipping",
     "Delivery & Support",
-  ]
+  ];
 
   return (
     <section className="py-16 bg-white">
@@ -56,20 +56,25 @@ export function Manufacturer() {
             World-Class Manufacturing Capabilities
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our advanced manufacturing facilities and expert team ensure every package meets the highest standards of
-            quality and precision.
+            Our advanced manufacturing facilities and expert team ensure every package meets the
+            highest standards of quality and precision.
           </p>
         </div>
 
         {/* Capabilities Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {capabilities.map((capability, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Card
+              key={index}
+              className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-[var(--axis-mid-blue)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <capability.icon className="h-8 w-8 text-[var(--axis-mid-blue)]" />
                 </div>
-                <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">{capability.title}</h3>
+                <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
+                  {capability.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{capability.description}</p>
                 <div className="text-xl font-bold text-[var(--axis-orange)]">{capability.stat}</div>
               </CardContent>
@@ -80,8 +85,12 @@ export function Manufacturer() {
         {/* Process Flow */}
         <div className="bg-gray-50 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-[var(--axis-dark-blue)] mb-4">Our Manufacturing Process</h3>
-            <p className="text-gray-600">From concept to delivery, we follow a proven process to ensure excellence</p>
+            <h3 className="text-2xl font-bold text-[var(--axis-dark-blue)] mb-4">
+              Our Manufacturing Process
+            </h3>
+            <p className="text-gray-600">
+              From concept to delivery, we follow a proven process to ensure excellence
+            </p>
           </div>
 
           <div className="grid md:grid-cols-4 lg:grid-cols-8 gap-4">
@@ -102,9 +111,12 @@ export function Manufacturer() {
         {/* CTA Section */}
         <div className="text-center mt-12">
           <div className="bg-[var(--axis-dark-blue)] text-white rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-4">Ready to Experience Our Manufacturing Excellence?</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              Ready to Experience Our Manufacturing Excellence?
+            </h3>
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Schedule a facility tour or discuss your packaging requirements with our manufacturing experts.
+              Schedule a facility tour or discuss your packaging requirements with our manufacturing
+              experts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
@@ -123,5 +135,5 @@ export function Manufacturer() {
         </div>
       </div>
     </section>
-  )
+  );
 }

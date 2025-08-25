@@ -1,28 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { HelpCircle, Search, MessageCircle } from "lucide-react"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { setActiveCategory } from "@/lib/slices/faqsSlice"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setActiveCategory } from "@/lib/slices/faqsSlice";
+import { HelpCircle, MessageCircle, Search } from "lucide-react";
+import { useState } from "react";
 
 export function FAQs() {
-  const dispatch = useAppDispatch()
-  const { faqs, activeCategory } = useAppSelector((state) => state.faqs)
-  const [searchTerm, setSearchTerm] = useState("")
+  const dispatch = useAppDispatch();
+  const { faqs, activeCategory } = useAppSelector((state) => state.faqs);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const categories = ["Orders", "Production", "Customization", "Materials"]
+  const categories = ["Orders", "Production", "Customization", "Materials"];
 
   const filteredFAQs = faqs.filter((faq) => {
-    const matchesCategory = activeCategory === "All" || faq.category === activeCategory
+    const matchesCategory = activeCategory === "All" || faq.category === activeCategory;
     const matchesSearch =
       faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <section className="py-16 bg-white">
@@ -36,7 +41,8 @@ export function FAQs() {
             Got Questions? We Have Answers
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to the most common questions about our custom packaging solutions and services
+            Find answers to the most common questions about our custom packaging solutions and
+            services
           </p>
         </div>
 
@@ -93,7 +99,9 @@ export function FAQs() {
                         <Badge variant="outline" className="mt-1 text-xs">
                           {faq.category}
                         </Badge>
-                        <span className="font-medium text-[var(--axis-dark-blue)]">{faq.question}</span>
+                        <span className="font-medium text-[var(--axis-dark-blue)]">
+                          {faq.question}
+                        </span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-4">
@@ -113,12 +121,13 @@ export function FAQs() {
               <HelpCircle className="h-16 w-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-600 mb-2">No FAQs Found</h3>
               <p className="text-gray-500 mb-4">
-                We couldn't find any questions matching your search. Try different keywords or browse all categories.
+                We couldn't find any questions matching your search. Try different keywords or
+                browse all categories.
               </p>
               <Button
                 onClick={() => {
-                  setSearchTerm("")
-                  dispatch(setActiveCategory("All"))
+                  setSearchTerm("");
+                  dispatch(setActiveCategory("All"));
                 }}
                 variant="outline"
                 className="bg-transparent"
@@ -134,7 +143,8 @@ export function FAQs() {
               <MessageCircle className="h-12 w-12 mx-auto mb-4 text-[var(--axis-yellow-orange)]" />
               <h3 className="text-2xl font-bold mb-4">Still Have Questions?</h3>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                Our packaging experts are here to help. Get personalized answers to your specific questions.
+                Our packaging experts are here to help. Get personalized answers to your specific
+                questions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
@@ -152,5 +162,5 @@ export function FAQs() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,25 +1,27 @@
-"use client"
+"use client";
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ChatSupport } from "@/components/chat-support"
-import { PRODUCT_CATEGORIES } from "@/lib/constants"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Package, Star, Truck, Shield, CheckCircle, Download, MessageCircle } from "lucide-react"
-import { Link, useParams } from "react-router-dom"
+import { ChatSupport } from "@/components/chat-support";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { PRODUCT_CATEGORIES } from "@/lib/constants";
+import { CheckCircle, MessageCircle, Package, Shield, Star, Truck } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
 
 export default function ProductDetailPage() {
-  const { slug } = useParams()
-  const product = PRODUCT_CATEGORIES.find(p => p.slug === slug)
+  const { slug } = useParams();
+  const product = PRODUCT_CATEGORIES.find((p) => p.slug === slug);
 
   if (!product) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Product Not Found</h1>
+          <h1 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
+            Product Not Found
+          </h1>
           <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
           <Link to="/products">
             <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
@@ -30,56 +32,230 @@ export default function ProductDetailPage() {
         <Footer />
         <ChatSupport />
       </div>
-    )
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       {/* Breadcrumb */}
       <section className="bg-white py-4 border-b">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-gray-500 hover:text-[var(--axis-orange)]">Home</Link>
+            <Link to="/" className="text-gray-500 hover:text-[var(--axis-orange)]">
+              Home
+            </Link>
             <span className="text-gray-400">/</span>
-            <Link to="/products" className="text-gray-500 hover:text-[var(--axis-orange)]">Products</Link>
+            <Link to="/products" className="text-gray-500 hover:text-[var(--axis-orange)]">
+              Products
+            </Link>
             <span className="text-gray-400">/</span>
             <span className="text-[var(--axis-dark-blue)] font-medium">{product.name}</span>
           </div>
         </div>
       </section>
 
-      {/* Product Hero */}
-      <section className="py-16 bg-white">
+      {/* Product Detail */}
+      <section className="py-8 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Side - Product Images */}
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-3xl">{product.icon}</span>
-                <Badge className="bg-[var(--axis-orange)] text-white">Premium Quality</Badge>
+              {/* Main Product Image */}
+              <div className="mb-4">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-96 object-cover rounded-lg shadow-lg"
+                />
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--axis-dark-blue)] mb-6">
-                {product.name}
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                {product.description}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
-                  Get Custom Quote
-                </Button>
-                <Button size="lg" variant="outline" className="border-[var(--axis-dark-blue)] text-[var(--axis-dark-blue)]">
-                  Download Specs
-                </Button>
+
+              {/* Thumbnail Gallery */}
+              <div className="flex gap-2">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-16 h-16 object-cover rounded border-2 border-[var(--axis-orange)]"
+                />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-16 h-16 object-cover rounded border border-gray-300"
+                />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-16 h-16 object-cover rounded border border-gray-300"
+                />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-16 h-16 object-cover rounded border border-gray-300"
+                />
               </div>
             </div>
+
+            {/* Right Side - Product Details & Quote Form */}
             <div>
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-              />
+              <div className="flex items-center space-x-2 mb-4">
+                <span className="text-2xl">{product.icon}</span>
+                <Badge className="bg-[var(--axis-orange)] text-white">Premium Quality</Badge>
+              </div>
+
+              <h1 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
+                {product.name}
+              </h1>
+
+              <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
+
+              {/* Quote Form */}
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <input
+                      type="email"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Your email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+                    <input
+                      type="tel"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Your phone"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Length (Inch) *
+                    </label>
+                    <input
+                      type="number"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Length"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Width (Inch) *
+                    </label>
+                    <input
+                      type="number"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Width"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Depth (Inch) *
+                    </label>
+                    <input
+                      type="number"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
+                      placeholder="Depth"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Material *
+                    </label>
+                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                      <option>Need Consultation</option>
+                      <option>Kraft Paper</option>
+                      <option>Cardboard</option>
+                      <option>Corrugated</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Print *</label>
+                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                      <option>Need Consultation</option>
+                      <option>No Print</option>
+                      <option>1 Color</option>
+                      <option>2 Color</option>
+                      <option>Full Color</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Finishing
+                    </label>
+                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                      <option>Need Consultation</option>
+                      <option>Matte</option>
+                      <option>Gloss</option>
+                      <option>UV Coating</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Additional Options
+                  </label>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                    <option>Choose Option</option>
+                    <option>Window Cutout</option>
+                    <option>Handle</option>
+                    <option>Embossing</option>
+                  </select>
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Add-up</label>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                    <option>Choose Option</option>
+                    <option>Rush Order</option>
+                    <option>Sample</option>
+                  </select>
+                </div>
+
+                <div className="mb-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Upload Design (Optional)
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-md p-4 text-center">
+                    <Button variant="outline" className="mb-2">
+                      Choose file
+                    </Button>
+                    <p className="text-sm text-gray-500">No file chosen</p>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-lg font-semibold text-[var(--axis-orange)] mb-4">
+                    PRICE ON REQUEST
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <select className="px-3 py-2 border border-gray-300 rounded-md">
+                      <option>500</option>
+                      <option>1000</option>
+                      <option>2000</option>
+                      <option>5000</option>
+                    </select>
+                    <Button className="bg-green-600 hover:bg-green-700 text-white px-8">
+                      ADD TO QUOTE
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -100,17 +276,23 @@ export default function ProductDetailPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="text-center p-6">
               <Package className="h-12 w-12 text-[var(--axis-orange)] mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">Premium Quality</h3>
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">
+                Premium Quality
+              </h3>
               <p className="text-gray-600">Highest quality materials and expert craftsmanship</p>
             </Card>
             <Card className="text-center p-6">
               <Star className="h-12 w-12 text-[var(--axis-orange)] mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">Custom Design</h3>
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">
+                Custom Design
+              </h3>
               <p className="text-gray-600">Tailored to your brand and specific requirements</p>
             </Card>
             <Card className="text-center p-6">
               <Truck className="h-12 w-12 text-[var(--axis-orange)] mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">Fast Delivery</h3>
+              <h3 className="text-xl font-semibold text-[var(--axis-dark-blue)] mb-2">
+                Fast Delivery
+              </h3>
               <p className="text-gray-600">Quick turnaround times with worldwide shipping</p>
             </Card>
             <Card className="text-center p-6">
@@ -163,16 +345,19 @@ export default function ProductDetailPage() {
               </h2>
               <div className="space-y-4">
                 <p className="text-gray-700 leading-relaxed">
-                  Our {product.name} are designed with your business in mind. We understand the importance 
-                  of quality packaging in protecting your products and enhancing your brand image.
+                  Our {product.name} are designed with your business in mind. We understand the
+                  importance of quality packaging in protecting your products and enhancing your
+                  brand image.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  With years of experience in the packaging industry, we've developed solutions that 
-                  combine functionality, aesthetics, and sustainability to meet the highest standards.
+                  With years of experience in the packaging industry, we've developed solutions that
+                  combine functionality, aesthetics, and sustainability to meet the highest
+                  standards.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Every product is crafted with attention to detail, ensuring that your packaging 
-                  not only looks great but also performs exceptionally well in real-world conditions.
+                  Every product is crafted with attention to detail, ensuring that your packaging
+                  not only looks great but also performs exceptionally well in real-world
+                  conditions.
                 </p>
               </div>
             </div>
@@ -183,18 +368,20 @@ export default function ProductDetailPage() {
       {/* CTA Section */}
       <section className="py-16 bg-[var(--axis-dark-blue)] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Get Started?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Let our packaging experts help you create the perfect {product.name} for your business. 
+            Let our packaging experts help you create the perfect {product.name} for your business.
             Get a custom quote today and see the difference quality packaging can make.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
               Get Custom Quote
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
+            >
               <MessageCircle className="h-4 w-4 mr-2" />
               Chat with Expert
             </Button>
@@ -209,31 +396,37 @@ export default function ProductDetailPage() {
             Related Products
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {PRODUCT_CATEGORIES.filter(p => p.slug !== slug).slice(0, 3).map((relatedProduct) => (
-              <Card key={relatedProduct.slug} className="group hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl">{relatedProduct.icon}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
-                    {relatedProduct.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {relatedProduct.description}
-                  </p>
-                  <img 
-                    src={relatedProduct.image} 
-                    alt={relatedProduct.name}
-                    className="w-full h-24 object-cover rounded-lg mb-4"
-                  />
-                  <Link to={`/products/${relatedProduct.slug}`}>
-                    <Button variant="outline" className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white">
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+            {PRODUCT_CATEGORIES.filter((p) => p.slug !== slug)
+              .slice(0, 3)
+              .map((relatedProduct) => (
+                <Card
+                  key={relatedProduct.slug}
+                  className="group hover:shadow-lg transition-all duration-300"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-2xl">{relatedProduct.icon}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
+                      {relatedProduct.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4">{relatedProduct.description}</p>
+                    <img
+                      src={relatedProduct.image}
+                      alt={relatedProduct.name}
+                      className="w-full h-24 object-cover rounded-lg mb-4"
+                    />
+                    <Link to={`/products/${relatedProduct.slug}`}>
+                      <Button
+                        variant="outline"
+                        className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white"
+                      >
+                        Learn More
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
           </div>
         </div>
       </section>
@@ -241,5 +434,5 @@ export default function ProductDetailPage() {
       <Footer />
       <ChatSupport />
     </div>
-  )
-} 
+  );
+}

@@ -1,13 +1,11 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { InstantQuote } from "@/components/instant-quote"
-import { FAQs } from "@/components/faqs"
-import { Testimonials } from "@/components/testimonials"
-import { Footer } from "@/components/footer"
-import { ChatSupport } from "@/components/chat-support"
-import { SolutionFeatures } from "@/components/solution-features"
-import { ProductShowcase } from "@/components/product-showcase"
-import { IndustrySolutions } from "@/components/industry-solutions"
+import { ChatSupport } from "@/components/chat-support";
+import { FAQs } from "@/components/faqs";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Hero } from "@/components/hero";
+import { InstantQuote } from "@/components/instant-quote";
+import { SolutionFeatures } from "@/components/solution-features";
+import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   return (
@@ -16,8 +14,6 @@ export default function Home() {
       <main>
         <Hero />
         <SolutionFeatures />
-        <ProductShowcase />
-        <IndustrySolutions />
         <InstantQuote />
         <FAQs />
         <Testimonials />
@@ -25,5 +21,5 @@ export default function Home() {
       <Footer />
       <ChatSupport />
     </div>
-  )
+  );
 }

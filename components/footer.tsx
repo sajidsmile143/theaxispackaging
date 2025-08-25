@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
-import { Link } from "react-router-dom"
-import { COMPANY_INFO } from "@/lib/constants"
+import { COMPANY_INFO } from "@/lib/constants";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
@@ -12,9 +12,9 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <img 
-                src="/assets/logo.png" 
-                alt="Axis Packaging Logo" 
+              <img
+                src="/assets/logo.png"
+                alt="Axis Packaging Logo"
                 className="w-10 h-10 rounded-lg object-cover"
               />
               <div>
@@ -23,8 +23,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-blue-100">
-              Leading provider of custom packaging solutions including boxes, retail packaging, and sustainable packaging
-              options.
+              Leading provider of custom packaging solutions including boxes, retail packaging, and
+              sustainable packaging options.
             </p>
           </div>
 
@@ -85,7 +85,13 @@ export function Footer() {
               <a href="#" aria-label="Facebook" className="text-blue-100 hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://www.instagram.com/theaxispackaging/?utm_source=qr&igsh=c3BxM3BkN2t3Zmo4#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-blue-100 hover:text-white">
+              <a
+                href="https://www.instagram.com/theaxispackaging/?utm_source=qr&igsh=c3BxM3BkN2t3Zmo4#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-blue-100 hover:text-white"
+              >
                 <Instagram className="h-6 w-6" />
               </a>
               <a href="#" aria-label="LinkedIn" className="text-blue-100 hover:text-white">
@@ -99,15 +105,21 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6 text-center text-blue-100 text-sm">
           <div className="flex flex-col sm:flex-row gap-2 justify-center">
-            <span>© {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.</span>
+            <span>
+              © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
+            </span>
             <span className="hidden sm:inline">•</span>
             <div className="space-x-4">
-              <Link to="/terms" className="hover:text-white">Terms</Link>
-              <Link to="/privacy" className="hover:text-white">Privacy</Link>
+              <Link to="/terms" className="hover:text-white">
+                Terms
+              </Link>
+              <Link to="/privacy" className="hover:text-white">
+                Privacy
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

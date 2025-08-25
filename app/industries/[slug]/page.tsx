@@ -1,25 +1,27 @@
-"use client"
+"use client";
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ChatSupport } from "@/components/chat-support"
-import { INDUSTRIES, PRODUCT_CATEGORIES } from "@/lib/constants"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Package, Star, Truck, Shield, CheckCircle, Users, Award, Factory } from "lucide-react"
-import { Link, useParams } from "react-router-dom"
+import { ChatSupport } from "@/components/chat-support";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { INDUSTRIES, PRODUCT_CATEGORIES } from "@/lib/constants";
+import { Award, CheckCircle, Factory, Package, Users } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
 
 export default function IndustryDetailPage() {
-  const { slug } = useParams()
-  const industry = INDUSTRIES.find(i => i.slug === slug)
+  const { slug } = useParams();
+  const industry = INDUSTRIES.find((i) => i.slug === slug);
 
   if (!industry) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">Industry Not Found</h1>
+          <h1 className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-4">
+            Industry Not Found
+          </h1>
           <p className="text-gray-600 mb-8">The industry you're looking for doesn't exist.</p>
           <Link to="/industries">
             <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
@@ -30,20 +32,24 @@ export default function IndustryDetailPage() {
         <Footer />
         <ChatSupport />
       </div>
-    )
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       {/* Breadcrumb */}
       <section className="bg-white py-4 border-b">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-gray-500 hover:text-[var(--axis-orange)]">Home</Link>
+            <Link to="/" className="text-gray-500 hover:text-[var(--axis-orange)]">
+              Home
+            </Link>
             <span className="text-gray-400">/</span>
-            <Link to="/industries" className="text-gray-500 hover:text-[var(--axis-orange)]">Industries</Link>
+            <Link to="/industries" className="text-gray-500 hover:text-[var(--axis-orange)]">
+              Industries
+            </Link>
             <span className="text-gray-400">/</span>
             <span className="text-[var(--axis-dark-blue)] font-medium">{industry.name}</span>
           </div>
@@ -62,21 +68,26 @@ export default function IndustryDetailPage() {
               <h1 className="text-4xl md:text-5xl font-bold text-[var(--axis-dark-blue)] mb-6">
                 {industry.name} Packaging Solutions
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                {industry.description}
-              </p>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{industry.description}</p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
+                <Button
+                  size="lg"
+                  className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
+                >
                   Get Industry Quote
                 </Button>
-                <Button size="lg" variant="outline" className="border-[var(--axis-dark-blue)] text-[var(--axis-dark-blue)]">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-[var(--axis-dark-blue)] text-[var(--axis-dark-blue)]"
+                >
                   Download Industry Guide
                 </Button>
               </div>
             </div>
             <div>
-              <img 
-                src={industry.image} 
+              <img
+                src={industry.image}
                 alt={industry.name}
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
@@ -89,9 +100,7 @@ export default function IndustryDetailPage() {
       <section className="py-16 bg-[var(--axis-dark-blue)] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              {industry.name} Industry Expertise
-            </h2>
+            <h2 className="text-3xl font-bold mb-4">{industry.name} Industry Expertise</h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               We understand the unique challenges and requirements of the {industry.name} industry
             </p>
@@ -129,13 +138,17 @@ export default function IndustryDetailPage() {
               {industry.name} Packaging Solutions
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our specialized packaging solutions designed specifically for the {industry.name} industry
+              Discover our specialized packaging solutions designed specifically for the{" "}
+              {industry.name} industry
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCT_CATEGORIES.slice(0, 6).map((product) => (
-              <Card key={product.slug} className="group hover:shadow-lg transition-all duration-300">
+              <Card
+                key={product.slug}
+                className="group hover:shadow-lg transition-all duration-300"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl">{product.icon}</span>
@@ -143,16 +156,17 @@ export default function IndustryDetailPage() {
                   <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
                     {product.name}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {product.description}
-                  </p>
-                  <img 
-                    src={product.image} 
+                  <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                  <img
+                    src={product.image}
                     alt={product.name}
                     className="w-full h-24 object-cover rounded-lg mb-4"
                   />
                   <Link to={`/products/${product.slug}`}>
-                    <Button variant="outline" className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white">
+                    <Button
+                      variant="outline"
+                      className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white"
+                    >
                       Learn More
                     </Button>
                   </Link>
@@ -175,29 +189,42 @@ export default function IndustryDetailPage() {
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-[var(--axis-dark-blue)]">Industry Expertise</h3>
-                    <p className="text-gray-600">Deep understanding of {industry.name} industry requirements and regulations</p>
+                    <h3 className="font-semibold text-[var(--axis-dark-blue)]">
+                      Industry Expertise
+                    </h3>
+                    <p className="text-gray-600">
+                      Deep understanding of {industry.name} industry requirements and regulations
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
                   <div>
                     <h3 className="font-semibold text-[var(--axis-dark-blue)]">Custom Solutions</h3>
-                    <p className="text-gray-600">Tailored packaging solutions designed specifically for {industry.name} products</p>
+                    <p className="text-gray-600">
+                      Tailored packaging solutions designed specifically for {industry.name}{" "}
+                      products
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-[var(--axis-dark-blue)]">Quality Assurance</h3>
-                    <p className="text-gray-600">Rigorous quality control processes ensuring compliance with industry standards</p>
+                    <h3 className="font-semibold text-[var(--axis-dark-blue)]">
+                      Quality Assurance
+                    </h3>
+                    <p className="text-gray-600">
+                      Rigorous quality control processes ensuring compliance with industry standards
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
                   <div>
                     <h3 className="font-semibold text-[var(--axis-dark-blue)]">Fast Turnaround</h3>
-                    <p className="text-gray-600">Quick production and delivery times to meet your business deadlines</p>
+                    <p className="text-gray-600">
+                      Quick production and delivery times to meet your business deadlines
+                    </p>
                   </div>
                 </div>
               </div>
@@ -208,16 +235,19 @@ export default function IndustryDetailPage() {
               </h2>
               <div className="space-y-4">
                 <p className="text-gray-700 leading-relaxed">
-                  The {industry.name} industry faces unique packaging challenges that require specialized solutions. 
-                  We understand these challenges and have developed packaging that addresses them effectively.
+                  The {industry.name} industry faces unique packaging challenges that require
+                  specialized solutions. We understand these challenges and have developed packaging
+                  that addresses them effectively.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  From regulatory compliance to brand protection, our {industry.name} packaging solutions 
-                  are designed to meet the highest standards while enhancing your product presentation.
+                  From regulatory compliance to brand protection, our {industry.name} packaging
+                  solutions are designed to meet the highest standards while enhancing your product
+                  presentation.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Our team of experts works closely with {industry.name} businesses to create packaging 
-                  that not only protects products but also enhances brand value and customer experience.
+                  Our team of experts works closely with {industry.name} businesses to create
+                  packaging that not only protects products but also enhances brand value and
+                  customer experience.
                 </p>
               </div>
             </div>
@@ -232,14 +262,18 @@ export default function IndustryDetailPage() {
             Ready to Transform Your {industry.name} Packaging?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Let our {industry.name} industry experts help you create the perfect packaging solution. 
+            Let our {industry.name} industry experts help you create the perfect packaging solution.
             Get a custom quote today and see how we can elevate your brand.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
               Get Industry Quote
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
+            >
               Schedule Consultation
             </Button>
           </div>
@@ -253,31 +287,34 @@ export default function IndustryDetailPage() {
             Related Industries
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {INDUSTRIES.filter(i => i.slug !== slug).slice(0, 3).map((relatedIndustry) => (
-              <Link key={relatedIndustry.slug} to={`/industries/${relatedIndustry.slug}`}>
-                <Card className="group hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl">{relatedIndustry.icon}</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
-                      {relatedIndustry.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {relatedIndustry.description}
-                    </p>
-                    <img 
-                      src={relatedIndustry.image} 
-                      alt={relatedIndustry.name}
-                      className="w-full h-24 object-cover rounded-lg mb-4"
-                    />
-                    <Button variant="outline" className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white">
-                      Learn More
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+            {INDUSTRIES.filter((i) => i.slug !== slug)
+              .slice(0, 3)
+              .map((relatedIndustry) => (
+                <Link key={relatedIndustry.slug} to={`/industries/${relatedIndustry.slug}`}>
+                  <Card className="group hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-2xl">{relatedIndustry.icon}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-2">
+                        {relatedIndustry.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{relatedIndustry.description}</p>
+                      <img
+                        src={relatedIndustry.image}
+                        alt={relatedIndustry.name}
+                        className="w-full h-24 object-cover rounded-lg mb-4"
+                      />
+                      <Button
+                        variant="outline"
+                        className="w-full border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white"
+                      >
+                        Learn More
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
           </div>
         </div>
       </section>
@@ -285,5 +322,5 @@ export default function IndustryDetailPage() {
       <Footer />
       <ChatSupport />
     </div>
-  )
-} 
+  );
+}

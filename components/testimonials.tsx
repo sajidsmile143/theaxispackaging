@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { nextTestimonial, prevTestimonial, setCurrentIndex } from "@/lib/slices/testimonialsSlice"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { nextTestimonial, prevTestimonial, setCurrentIndex } from "@/lib/slices/testimonialsSlice";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { useEffect } from "react";
 
 export function Testimonials() {
-  const dispatch = useAppDispatch()
-  const { testimonials, currentIndex } = useAppSelector((state) => state.testimonials)
+  const dispatch = useAppDispatch();
+  const { testimonials, currentIndex } = useAppSelector((state) => state.testimonials);
 
   // Auto-advance testimonials
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(nextTestimonial())
-    }, 5000)
+      dispatch(nextTestimonial());
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [dispatch])
+    return () => clearInterval(interval);
+  }, [dispatch]);
 
-  const currentTestimonial = testimonials[currentIndex]
+  const currentTestimonial = testimonials[currentIndex];
 
-  if (!currentTestimonial) return null
+  if (!currentTestimonial) return null;
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -37,8 +37,8 @@ export function Testimonials() {
             What Our Clients Say About Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about our packaging
-            solutions.
+            Don't just take our word for it. Here's what our satisfied customers have to say about
+            our packaging solutions.
           </p>
         </div>
 
@@ -72,7 +72,9 @@ export function Testimonials() {
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div className="text-left">
-                    <div className="font-semibold text-[var(--axis-dark-blue)] text-lg">{currentTestimonial.name}</div>
+                    <div className="font-semibold text-[var(--axis-dark-blue)] text-lg">
+                      {currentTestimonial.name}
+                    </div>
                     <div className="text-gray-600">{currentTestimonial.company}</div>
                   </div>
                 </div>
@@ -135,7 +137,9 @@ export function Testimonials() {
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>
-                      <div className="font-medium text-[var(--axis-dark-blue)] text-sm">{testimonial.name}</div>
+                      <div className="font-medium text-[var(--axis-dark-blue)] text-sm">
+                        {testimonial.name}
+                      </div>
                       <div className="text-gray-500 text-xs">{testimonial.company}</div>
                     </div>
                   </div>
@@ -177,8 +181,8 @@ export function Testimonials() {
             <div className="bg-[var(--axis-dark-blue)] text-white rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to Join Our Happy Customers?</h3>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                Experience the same quality and service that our customers rave about. Get started with your custom
-                packaging project today.
+                Experience the same quality and service that our customers rave about. Get started
+                with your custom packaging project today.
               </p>
               <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
                 Start Your Project
@@ -188,5 +192,5 @@ export function Testimonials() {
         </div>
       </div>
     </section>
-  )
+  );
 }

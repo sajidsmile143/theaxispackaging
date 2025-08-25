@@ -1,13 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { COMPANY_INFO, NAVIGATION_ITEMS } from "@/lib/constants";
-import { Clock, Mail, Menu, Phone, X } from "lucide-react";
+import { COMPANY_INFO, INDUSTRIES, NAVIGATION_ITEMS, PRODUCT_CATEGORIES } from "@/lib/constants";
+import { ChevronDown, Clock, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Get first 10 products for dropdown
+  const productsForDropdown = PRODUCT_CATEGORIES.slice(0, 10);
+
+  // Get first 12 industries for dropdown
+  const industriesForDropdown = INDUSTRIES.slice(0, 12);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -53,15 +59,127 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {NAVIGATION_ITEMS.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {NAVIGATION_ITEMS.map((item) => {
+              // Special handling for Products and Industries with dropdowns
+              if (item.name === "Products") {
+                return (
+                  <div key={item.name} className="relative group">
+                    <Link
+                      to={item.href}
+                      className="flex items-center gap-1 text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </Link>
+
+                    {/* Products Dropdown */}
+                    <div className="absolute top-full left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-4">
+                          Our Products
+                        </h3>
+                        <div className="grid grid-cols-3 gap-4">
+                          {productsForDropdown.map((product) => (
+                            <Link
+                              key={product.slug}
+                              to="/products"
+                              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                              <div>
+                                <h4 className="text-sm font-medium text-gray-900">
+                                  {product.name}
+                                </h4>
+                                <p className="text-xs text-gray-500 line-clamp-2">
+                                  {product.description}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-4 border-t">
+                          <Link
+                            to="/products"
+                            className="text-[var(--axis-orange)] hover:text-[var(--axis-orange)]/80 font-medium text-sm"
+                          >
+                            View All Products →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              if (item.name === "Industries") {
+                return (
+                  <div key={item.name} className="relative group">
+                    <Link
+                      to={item.href}
+                      className="flex items-center gap-1 text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </Link>
+
+                    {/* Industries Dropdown */}
+                    <div className="absolute top-full left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-4">
+                          Shop by Industry
+                        </h3>
+                        <div className="grid grid-cols-3 gap-4">
+                          {industriesForDropdown.map((industry) => (
+                            <Link
+                              key={industry.slug}
+                              to={`/products?industry=${industry.slug}`}
+                              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              <img
+                                src={industry.image}
+                                alt={industry.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                              <div>
+                                <h4 className="text-sm font-medium text-gray-900">
+                                  {industry.name}
+                                </h4>
+                                <p className="text-xs text-gray-500 line-clamp-2">
+                                  {industry.description}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-4 border-t">
+                          <Link
+                            to="/industries"
+                            className="text-[var(--axis-orange)] hover:text-[var(--axis-orange)]/80 font-medium text-sm"
+                          >
+                            View All Industries →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Regular navigation items
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA Buttons */}
@@ -69,7 +187,7 @@ export function Header() {
             <Link to="/quote">
               <Button
                 variant="outline"
-                className="border-[var(--axis-light-gray)] text-[var(--axis-mid-blue)] hover:bg-[var(--axis-mid-blue)] hover:text-white bg-transparent"
+                className="border-[var(--axis-light-gray)] text-[var(--axis-light-gray)] hover:bg-[var(--axis-mid-blue)] hover:text-white bg-transparent"
               >
                 Get Quote
               </Button>
