@@ -43,7 +43,7 @@ const initialState: FAQsState = {
       category: "Materials",
     },
   ],
-  activeCategory: "Orders",
+  activeCategory: "All",
 }
 
 const faqsSlice = createSlice({

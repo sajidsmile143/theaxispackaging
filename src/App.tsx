@@ -5,6 +5,7 @@ import IndustriesPage from "@/app/industries/page";
 import MOQPage from "@/app/moq/page";
 import Home from "@/app/page";
 import PrivacyPage from "@/app/privacy/page";
+import FAQsPage from "@/app/faqs/page";
 import ProductDetailPage from "@/app/products/[slug]/page";
 import ProductsPage from "@/app/products/page";
 import QuotePage from "@/app/quote/page";
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/faqs" element={<FAQsPage />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:slug" element={<ProductDetailPage />} />
       <Route path="/industries" element={<IndustriesPage />} />

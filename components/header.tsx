@@ -73,7 +73,7 @@ export function Header() {
                     </Link>
 
                     {/* Products Dropdown */}
-                    <div className="absolute top-full left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-[650px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="p-4">
                         <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-4">
                           Our Products
@@ -127,7 +127,7 @@ export function Header() {
                     </Link>
 
                     {/* Industries Dropdown */}
-                    <div className="absolute top-full left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="absolute top-full left-[-70px] mt-2 w-[650px] h-[480px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="p-4">
                         <h3 className="text-lg font-semibold text-[var(--axis-dark-blue)] mb-4">
                           Shop by Industry

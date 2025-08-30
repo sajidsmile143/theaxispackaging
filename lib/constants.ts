@@ -14,6 +14,7 @@ export const NAVIGATION_ITEMS = [
   { name: "Sustainability", href: "/sustainability" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "FAQs", href: "/faqs" },
   { name: "MOQ", href: "/moq" },
 ];
 
