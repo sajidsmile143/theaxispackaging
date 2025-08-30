@@ -14,11 +14,13 @@ import { COMPANY_INFO } from "@/lib/constants";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
 
 // Initialize EmailJS with your public key
 emailjs.init("shQGEnnog2UpWxhdL");
 
 export default function ContactPage() {
+  const navigate = useNavigate();
   const [contactFormData, setContactFormData] = useState({
     name: "",
     email: "",
@@ -183,7 +185,7 @@ export default function ContactPage() {
                         onClick={() => {
                           const url = `/faqs?q=${encodeURIComponent(question)}`;
                           console.log('Navigating to:', url);
-                          window.location.href = url;
+                          navigate(url);
                         }}
                         className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors hover:border-[var(--axis-orange)] hover:shadow-md"
                       >
@@ -197,7 +199,7 @@ export default function ContactPage() {
                     <Button 
                       onClick={() => {
                         console.log('Navigating to /faqs');
-                        window.location.href = '/faqs';
+                        navigate('/faqs');
                       }}
                       variant="outline" 
                       className="border-[var(--axis-orange)] text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white"
