@@ -136,7 +136,7 @@ export function Header() {
                           {industriesForDropdown.map((industry) => (
                             <Link
                               key={industry.slug}
-                              to={`/products?industry=${industry.slug}`}
+                              to={`/industries/${industry.slug}`}
                               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                             >
                               <img
