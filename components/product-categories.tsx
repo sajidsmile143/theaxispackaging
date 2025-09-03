@@ -5,6 +5,7 @@ import { PRODUCT_CATEGORIES } from "@/lib/constants";
 import { ChevronLeft, ChevronRight, Package, Shield, Star, Truck } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+const placeholderImg = "/assets/placeholder.jpg";
 
 interface ProductCategoriesProps {
   selectedIndustry?: {
@@ -52,7 +53,10 @@ export function ProductCategories({ selectedIndustry }: ProductCategoriesProps) 
                   {/* Product Image */}
                   <div className="mb-4">
                     <img
-                      src={product.image}
+                      src={product.image || placeholderImg}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = placeholderImg;
+                      }}
                       alt={product.name}
                       className="w-full h-48 object-cover rounded-lg"
                     />

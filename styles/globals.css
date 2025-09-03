@@ -43,6 +43,15 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Axis Packaging Brand Colors */
+    --axis-orange: #f97316;
+    --axis-dark-blue: #1e3a8a;
+    --axis-mid-blue: #3b82f6;
+    --axis-light-blue: #60a5fa;
+    --axis-secondary-blue: #2563eb;
+    --axis-dark-gray: #374151;
+    --axis-light-gray: #6b7280;
   }
   .dark {
     --background: 0 0% 3.9%;

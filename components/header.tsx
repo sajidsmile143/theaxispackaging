@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { COMPANY_INFO, INDUSTRIES, NAVIGATION_ITEMS, PRODUCT_CATEGORIES } from "@/lib/constants";
-import { ChevronDown, Clock, Mail, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Clock, Mail, Menu, Phone, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,24 +16,35 @@ export function Header() {
   const industriesForDropdown = INDUSTRIES.slice(0, 12);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      {/* Top bar with contact info */}
-      <div className="bg-[var(--axis-orange)] text-white py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-            <div className="flex items-center gap-4 mb-2 sm:mb-0">
-              <div className="flex items-center gap-1">
-                <Phone className="h-3 w-3" />
-                <span>{COMPANY_INFO.phone}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Mail className="h-3 w-3" />
-                <span>{COMPANY_INFO.email}</span>
-              </div>
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100">
+      {/* Top bar */}
+      <div className="bg-[var(--axis-orange)] text-white py-2 px-4">
+        <div className="container mx-auto flex justify-between items-center text-sm">
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-2">
+              <Phone className="h-4 w-4" />
+              <span>+1 (555) 123-4567</span>
             </div>
-            <div className="flex items-center gap-1">
-              <Clock className="h-3 w-3" />
-              <span>{COMPANY_INFO.hours}</span>
+            <div className="flex items-center space-x-2">
+              <Mail className="h-4 w-4" />
+              <span>info@axispackaging.com</span>
+            </div>
+          </div>
+          <div className="hidden md:flex items-center space-x-4">
+            <span>Follow us:</span>
+            <div className="flex space-x-3">
+              <a href="#" className="hover:text-sky-200 transition-colors">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="#" className="hover:text-sky-200 transition-colors">
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a href="https://www.instagram.com/theaxispackaging?utm_source=qr&igsh=c3BxM3BkN2t3Zmo4" target="_blank" rel="noopener noreferrer" className="hover:text-sky-200 transition-colors">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="#" className="hover:text-sky-200 transition-colors">
+                <Linkedin className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -41,24 +52,29 @@ export function Header() {
 
       {/* Main navigation */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 sm:h-16 h-14">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src="/assets/logo.png"
-              alt="Axis Packaging Logo"
-              className="w-12 h-12 rounded-lg object-cover"
-            />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <img
+                src="/assets/logo.png"
+                alt="Axis Packaging Logo"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-200"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-bold">✓</span>
+              </div>
+            </div>
             <div>
-              <h1 className="text-xl font-bold text-[var(--axis-dark-gray)]">
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[var(--axis-dark-blue)] to-blue-600 bg-clip-text text-transparent">
                 {COMPANY_INFO.name}
               </h1>
-              <p className="text-xs text-gray-600 hidden sm:block">{COMPANY_INFO.tagline}</p>
+              <p className="text-xs sm:text-sm text-gray-600 font-medium hidden sm:block">{COMPANY_INFO.tagline}</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {NAVIGATION_ITEMS.map((item) => {
               // Special handling for Products and Industries with dropdowns
               if (item.name === "Products") {
@@ -66,7 +82,7 @@ export function Header() {
                   <div key={item.name} className="relative group">
                     <Link
                       to={item.href}
-                      className="flex items-center gap-1 text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                      className="flex items-center gap-1 text-gray-700 hover:text-sky-600 font-medium transition-colors duration-200"
                     >
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
@@ -86,7 +102,8 @@ export function Header() {
                               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                             >
                               <img
-                                src={product.image}
+                                src={product.image || "/assets/placeholder.jpg"}
+                                onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/assets/placeholder.jpg"; }}
                                 alt={product.name}
                                 className="w-16 h-16 object-cover rounded"
                               />
@@ -120,7 +137,7 @@ export function Header() {
                   <div key={item.name} className="relative group">
                     <Link
                       to={item.href}
-                      className="flex items-center gap-1 text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                      className="flex items-center gap-1 text-gray-700 hover:text-sky-600 font-medium transition-colors duration-200"
                     >
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
@@ -140,7 +157,8 @@ export function Header() {
                               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                             >
                               <img
-                                src={industry.image}
+                                src={industry.image || "/assets/placeholder.jpg"}
+                                onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/assets/placeholder.jpg"; }}
                                 alt={industry.name}
                                 className="w-16 h-16 object-cover rounded"
                               />
@@ -174,7 +192,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium transition-colors duration-200"
+                  className="text-gray-700 hover:text-sky-600 font-medium transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
@@ -183,18 +201,18 @@ export function Header() {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link to="/quote">
-              <Button
-                variant="outline"
-                className="border-[var(--axis-light-gray)] text-[var(--axis-light-gray)] hover:bg-[var(--axis-mid-blue)] hover:text-white bg-transparent"
-              >
+              <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)] text-white px-6 py-2 rounded-lg">
                 Get Quote
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
-                Call Now
+              <Button 
+                variant="outline" 
+                className="border-sky-600 text-[var(--axis-orange)] hover:bg-[var(--axis-orange)] hover:text-white px-6 py-2 rounded-lg"
+              >
+                Contact Us
               </Button>
             </Link>
           </div>
@@ -217,7 +235,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-gray-700 hover:text-[var(--axis-secondary-blue)] font-medium py-2"
+                  className="text-gray-700 hover:text-[var(--axis-orange)] font-medium py-3"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -227,7 +245,7 @@ export function Header() {
                 <Link to="/quote">
                   <Button
                     variant="outline"
-                    className="border-[var(--axis-light-gray)] text-[var(--axis-light-gray)] bg-transparent w-full"
+                    className="border-[var(--axis-light-gray)] text-[var(--axis-light-gray)] bg-transparent w-full py-3"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Get Quote
@@ -235,7 +253,7 @@ export function Header() {
                 </Link>
                 <Link to="/contact">
                   <Button
-                    className="bg-[var(--axis-secondary-blue)] hover:bg-[var(--axis-secondary-blue)]/90 text-white w-full"
+                    className="bg-[var(--axis-secondary-blue)] hover:bg-[var(--axis-secondary-blue)]/90 text-white w-full py-3"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Call Now

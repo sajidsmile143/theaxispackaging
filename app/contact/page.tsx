@@ -17,7 +17,8 @@ import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 
 // Initialize EmailJS with your public key
-emailjs.init("shQGEnnog2UpWxhdL");
+// emailjs.init("shQGEnnog2UpWxhdL");
+emailjs.init("1c6673PLz9Wiytv_t");
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -40,7 +41,9 @@ export default function ContactPage() {
 
     try {
       const templateParams = {
-        to_email: "sajidsmile143@gmail.com",
+        // to_email: "theasxis.packaging@gmail.com",
+        to_email: "theasxis.packaging@gmail.com",
+        // to_email: "majid121.skylinxtech@gmail.com",
         from_name: contactFormData.name,
         from_email: contactFormData.email,
         from_phone: contactFormData.phone || "Not provided",
@@ -49,11 +52,25 @@ export default function ContactPage() {
         timeline: contactFormData.timeline || "Not specified",
         description: contactFormData.description || "No description provided",
         subject: `New Contact Message - ${contactFormData.name}`,
+        date_received: new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+        time_received: new Date().toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit', hour12: true }),
       };
 
+      // Debug: Log the data being sent
+      console.log("Contact Form Data:", contactFormData);
+      console.log("Template Params:", templateParams);
+      console.log("Individual fields:", {
+        projectType: contactFormData.projectType,
+        budget: contactFormData.budget,
+        timeline: contactFormData.timeline,
+        description: contactFormData.description
+      });
+
       await emailjs.send(
-        "service_vhwzbeo", // Your service ID
-        "template_9epu9ft", // Your template ID
+        // "service_vhwzbeo", // Your service ID
+        // "template_9epu9ft", // Your template ID
+        "service_82mnk3u", // Your service ID
+        "template_ykfl7oj", // Your template ID
         templateParams
       );
 

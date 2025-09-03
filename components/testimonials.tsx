@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { nextTestimonial, prevTestimonial, setCurrentIndex } from "@/lib/slices/testimonialsSlice";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function Testimonials() {
   const dispatch = useAppDispatch();
@@ -94,19 +95,17 @@ export function Testimonials() {
             </Button>
 
             {/* Dots Indicator */}
-            <div className="flex space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => dispatch(setCurrentIndex(index))}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentIndex ? "bg-[var(--axis-orange)]" : "bg-gray-300"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => dispatch(setCurrentIndex(index))}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  index === currentIndex
+                    ? "bg-[var(--axis-orange)]"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
             <Button
               variant="outline"
               size="sm"
@@ -155,22 +154,22 @@ export function Testimonials() {
           </div>
 
           {/* Stats Section */}
-          <div className="mt-12 bg-white rounded-2xl p-8 shadow-lg">
+          <div className="mt-12 bg-white rounded-lg p-8 shadow-lg">
             <div className="grid md:grid-cols-4 gap-6 text-center">
               <div>
-                <div className="text-3xl font-bold text-[var(--axis-orange)] mb-2">500+</div>
+                <div className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">50K+</div>
                 <div className="text-gray-600">Happy Clients</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-[var(--axis-orange)] mb-2">4.9/5</div>
+                <div className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">4.9/5</div>
                 <div className="text-gray-600">Average Rating</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-[var(--axis-orange)] mb-2">10M+</div>
+                <div className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">10M+</div>
                 <div className="text-gray-600">Boxes Delivered</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-[var(--axis-orange)] mb-2">98%</div>
+                <div className="text-3xl font-bold text-[var(--axis-dark-blue)] mb-2">98%</div>
                 <div className="text-gray-600">Customer Satisfaction</div>
               </div>
             </div>
@@ -178,15 +177,17 @@ export function Testimonials() {
 
           {/* CTA */}
           <div className="text-center mt-12">
-            <div className="bg-[var(--axis-dark-blue)] text-white rounded-2xl p-8">
+            <div className="bg-[var(--axis-dark-blue)] text-white rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to Join Our Happy Customers?</h3>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
                 Experience the same quality and service that our customers rave about. Get started
                 with your custom packaging project today.
               </p>
-              <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
-                Start Your Project
-              </Button>
+              <Link to="/quote">
+                <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white px-6 py-3">
+                  Start Your Project
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

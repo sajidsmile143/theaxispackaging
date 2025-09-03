@@ -24,15 +24,51 @@ import {
 import emailjs from "@emailjs/browser";
 import { Calculator, CheckCircle, Clock, Upload } from "lucide-react";
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 // Initialize EmailJS with your public key
-emailjs.init("shQGEnnog2UpWxhdL");
+// emailjs.init("shQGEnnog2UpWxhdL");
+emailjs.init("1c6673PLz9Wiytv_t");
 
 export function InstantQuote() {
   const dispatch = useAppDispatch();
   const { formData, isSubmitting, submitted } = useAppSelector((state) => state.quoteForm);
   const [step, setStep] = useState(1);
+  const { toast } = useToast();
+
+  // Handle optional industry param and guide download
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const industry = params.get("industry") || "";
+    const downloadGuide = params.get("downloadGuide");
+    if (industry) {
+      // Pre-fill a hint in additional requirements
+      if (!formData.additionalRequirements) {
+        dispatch(updateFormData({ additionalRequirements: `Industry: ${industry}` }));
+      }
+    }
+    if (downloadGuide && industry) {
+      try {
+        const content = `Axis Packaging\nIndustry Guide: ${industry}\n\nThis is a concise starter guide for the ${industry} industry.\nContact: theasxis.packaging@gmail.com`;
+        // const content = `Axis Packaging\nIndustry Guide: ${industry}\n\nThis is a concise starter guide for the ${industry} industry.\nContact: majid121.skylinxtech@gmail.com`;
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${industry}-guide.txt`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        toast({ title: "Guide downloaded", description: `Downloaded ${industry} guide.` });
+      } catch {
+        // no-op
+      }
+    }
+    // run only once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +88,7 @@ export function InstantQuote() {
 
     try {
       const templateParams = {
+        // to_email: "theasxis.packaging@gmail.com",
         to_email: "theasxis.packaging@gmail.com",
         from_name: formData.contactInfo.name,
         from_email: formData.contactInfo.email,
@@ -70,8 +107,10 @@ export function InstantQuote() {
       };
 
       await emailjs.send(
-        "service_vhwzbeo", // Your service ID
-        "template_9epu9ft", // Your template ID
+        // "service_vhwzbeo", // Your service ID
+        // "template_9epu9ft", // Your template ID
+        "service_82mnk3u", // Your service ID
+        "template_8f726v7", // Your template ID
         templateParams
       );
 
@@ -193,10 +232,10 @@ export function InstantQuote() {
                             dispatch(updateFormData({ productType: value }))
                           }
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-white">
                             <SelectValue placeholder="Select product type" />
                           </SelectTrigger>
-                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999] bg-white" position="popper" sideOffset={4}>
                             <SelectItem value="folding-carton-boxes">
                               Custom Folding Carton Boxes
                             </SelectItem>
@@ -223,10 +262,10 @@ export function InstantQuote() {
                           value={formData.quantity}
                           onValueChange={(value) => dispatch(updateFormData({ quantity: value }))}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-white">
                             <SelectValue placeholder="Select quantity" />
                           </SelectTrigger>
-                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999] bg-white" position="popper" sideOffset={4}>
                             <SelectItem value="100-500">100 - 500 units</SelectItem>
                             <SelectItem value="500-1000">500 - 1,000 units</SelectItem>
                             <SelectItem value="1000-5000">1,000 - 5,000 units</SelectItem>
@@ -288,10 +327,10 @@ export function InstantQuote() {
                           value={formData.material}
                           onValueChange={(value) => dispatch(updateFormData({ material: value }))}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-white">
                             <SelectValue placeholder="Select material" />
                           </SelectTrigger>
-                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999] bg-white" position="popper" sideOffset={4}>
                             <SelectItem value="corrugated-e-flute">Corrugated E-Flute</SelectItem>
                             <SelectItem value="corrugated-b-flute">Corrugated B-Flute</SelectItem>
                             <SelectItem value="corrugated-c-flute">Corrugated C-Flute</SelectItem>
@@ -314,10 +353,10 @@ export function InstantQuote() {
                           value={formData.printing}
                           onValueChange={(value) => dispatch(updateFormData({ printing: value }))}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-white">
                             <SelectValue placeholder="Select printing" />
                           </SelectTrigger>
-                          <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
+                          <SelectContent className="z-[9999] bg-white" position="popper" sideOffset={4}>
                             <SelectItem value="no-printing">No Printing</SelectItem>
                             <SelectItem value="1-color">1 Color Printing</SelectItem>
                             <SelectItem value="2-color">2 Color Printing</SelectItem>
@@ -341,10 +380,10 @@ export function InstantQuote() {
                         value={formData.timeline || ""}
                         onValueChange={(value) => dispatch(updateFormData({ timeline: value }))}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-white">
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
-                        <SelectContent className="z-[9999]" position="popper" sideOffset={4}>
+                        <SelectContent className="z-[9999] bg-white" position="popper" sideOffset={4}>
                           <SelectItem value="rush-1-2-weeks">Rush (1-2 weeks)</SelectItem>
                           <SelectItem value="standard-3-4-weeks">Standard (3-4 weeks)</SelectItem>
                           <SelectItem value="extended-5-6-weeks">Extended (5-6 weeks)</SelectItem>
@@ -442,13 +481,22 @@ export function InstantQuote() {
                         <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                         <p className="text-gray-600 mb-2">
                           Drag and drop your files here, or{" "}
-                          <button
-                            type="button"
-                            className="text-[var(--axis-orange)] hover:underline"
-                          >
+                          <label htmlFor="file-upload" className="text-[var(--axis-orange)] hover:underline cursor-pointer">
                             browse
-                          </button>
+                          </label>
                         </p>
+                        <input
+                          id="file-upload"
+                          type="file"
+                          multiple
+                          accept=".pdf,.ai,.psd,.jpg,.jpeg,.png"
+                          className="hidden"
+                          onChange={(e) => {
+                            const files = Array.from(e.target.files || []);
+                            console.log('Selected files:', files);
+                            // You can add file handling logic here
+                          }}
+                        />
                         <p className="text-sm text-gray-500">
                           Supports: PDF, AI, PSD, JPG, PNG (Max 10MB each)
                         </p>

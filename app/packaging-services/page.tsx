@@ -230,9 +230,11 @@ export default function PackagingServicesPage() {
             solution. Get started with a consultation today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
-              Schedule Consultation
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
+                Schedule Consultation
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]">
               Contact Services Team
             </Button>

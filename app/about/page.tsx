@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Users, Award, Target, Heart, ArrowRight } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export default function AboutPage() {
   const values = [
@@ -169,16 +170,20 @@ export default function AboutPage() {
               amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
-                Get Started Today
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)] bg-transparent"
-              >
-                Schedule Consultation
-              </Button>
+              <Link to="/quote">
+                <Button className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90 text-white">
+                  Get Started Today
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)] bg-transparent"
+                >
+                  Schedule Consultation
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -189,3 +194,4 @@ export default function AboutPage() {
     </div>
   )
 }
+

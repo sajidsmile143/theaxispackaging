@@ -3,7 +3,6 @@ import { FAQs } from "@/components/faqs";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
-import { InstantQuote } from "@/components/instant-quote";
 import { SolutionFeatures } from "@/components/solution-features";
 import { Testimonials } from "@/components/testimonials";
 
@@ -14,7 +13,6 @@ export default function Home() {
       <main>
         <Hero />
         <SolutionFeatures />
-        <InstantQuote />
         <FAQs />
         <Testimonials />
       </main>

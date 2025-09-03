@@ -70,19 +70,23 @@ export default function IndustryDetailPage() {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{industry.description}</p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
-                >
-                  Get Industry Quote
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-[var(--axis-dark-blue)] text-[var(--axis-dark-blue)]"
-                >
-                  Download Industry Guide
-                </Button>
+                <Link to={`/quote?industry=${encodeURIComponent(industry.slug)}`}>
+                  <Button
+                    size="lg"
+                    className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
+                  >
+                    Get Industry Quote
+                  </Button>
+                </Link>
+                <Link to={`/quote?industry=${encodeURIComponent(industry.slug)}&downloadGuide=1`}>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[var(--axis-dark-blue)] text-[var(--axis-dark-blue)]"
+                  >
+                    Download Industry Guide
+                  </Button>
+                </Link>
               </div>
             </div>
             <div>
@@ -266,22 +270,28 @@ export default function IndustryDetailPage() {
             Get a custom quote today and see how we can elevate your brand.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90">
-              Get Industry Quote
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
-            >
-              Schedule Consultation
-            </Button>
+            <Link to={`/quote?industry=${encodeURIComponent(industry.slug)}`}>
+              <Button
+                size="lg"
+                className="bg-[var(--axis-orange)] hover:bg-[var(--axis-orange)]/90"
+              >
+                Get Industry Quote
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[var(--axis-dark-blue)]"
+              >
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Related Industries */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-[var(--axis-dark-blue)] text-center mb-12">
             Related Industries

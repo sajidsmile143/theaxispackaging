@@ -9,10 +9,101 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PRODUCT_CATEGORIES } from "@/lib/constants";
 import { CheckCircle, MessageCircle, Package, Shield, Star, Truck } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+const placeholderImg = "/assets/placeholder.jpg";
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
   const product = PRODUCT_CATEGORIES.find((p) => p.slug === slug);
+  const { toast } = useToast();
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    length: "",
+    width: "",
+    depth: "",
+    material: "Need Consultation",
+    print: "Need Consultation",
+    finishing: "Need Consultation",
+    additionalOption: "Choose Option",
+    addUp: "Choose Option",
+    quantity: "500",
+  });
+
+  const [submitting, setSubmitting] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const validate = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.name.trim()) return "Name is required";
+    if (!emailRegex.test(form.email)) return "Valid email is required";
+    if (!form.phone.trim()) return "Phone is required";
+    if (!form.length || !form.width || !form.depth) return "All dimensions are required";
+    if (Number(form.length) <= 0 || Number(form.width) <= 0 || Number(form.depth) <= 0)
+      return "Dimensions must be positive";
+    return "";
+  };
+
+  const handleAddToQuote = async () => {
+    const error = validate();
+    if (error) {
+      toast({ title: "Validation error", description: error });
+      return;
+    }
+    setSubmitting(true);
+    try {
+      emailjs.init("shQGEnnog2UpWxhdL");
+      await emailjs.send(
+        "service_vhwzbeo",
+        "template_9epu9ft",
+        {
+          to_email: "theasxis.packaging@gmail.com",
+          // to_email: "theasxis.packaging@gmail.com",
+          subject: `Add to Quote - ${product?.name ?? "Product"}`,
+          from_name: form.name,
+          from_email: form.email,
+          from_phone: form.phone,
+          product_type: product?.name ?? slug,
+          quantity: form.quantity,
+          dimensions: `${form.length}" x ${form.width}" x ${form.depth}"`,
+          material: form.material,
+          printing: form.print,
+          finishing: form.finishing,
+          additional_option: form.additionalOption,
+          add_up: form.addUp,
+          file_name: selectedFile?.name || "No file attached",
+        }
+      );
+
+      // Persist to localStorage as a lightweight quote cart entry
+      const existing = JSON.parse(localStorage.getItem("quoteItems") || "[]");
+      const item = {
+        slug,
+        productName: product?.name ?? slug,
+        quantity: form.quantity,
+        dimensions: { length: form.length, width: form.width, depth: form.depth },
+        material: form.material,
+        printing: form.print,
+        finishing: form.finishing,
+        additionalOption: form.additionalOption,
+        addUp: form.addUp,
+        contact: { name: form.name, email: form.email, phone: form.phone },
+        fileName: selectedFile?.name || null,
+        createdAt: new Date().toISOString(),
+      };
+      localStorage.setItem("quoteItems", JSON.stringify([item, ...existing]));
+
+      toast({ title: "Added to quote", description: "We received your request.", className: "border-green-600 text-green-700" });
+    } catch (err) {
+      toast({ title: "Failed to submit", description: "Please try again." });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (!product) {
     return (
@@ -65,7 +156,10 @@ export default function ProductDetailPage() {
               {/* Main Product Image */}
               <div className="mb-4">
                 <img
-                  src={product.image}
+                  src={product.image || placeholderImg}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = placeholderImg;
+                  }}
                   alt={product.name}
                   className="w-full h-96 object-cover rounded-lg shadow-lg"
                 />
@@ -74,22 +168,26 @@ export default function ProductDetailPage() {
               {/* Thumbnail Gallery */}
               <div className="flex gap-2">
                 <img
-                  src={product.image}
+                  src={product.image || placeholderImg}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded border-2 border-[var(--axis-orange)]"
                 />
                 <img
-                  src={product.image}
+                  src={product.image || placeholderImg}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded border border-gray-300"
                 />
                 <img
-                  src={product.image}
+                  src={product.image || placeholderImg}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded border border-gray-300"
                 />
                 <img
-                  src={product.image}
+                  src={product.image || placeholderImg}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded border border-gray-300"
                 />
@@ -118,6 +216,9 @@ export default function ProductDetailPage() {
                       type="text"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Your name"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      required
                     />
                   </div>
                   <div>
@@ -126,6 +227,9 @@ export default function ProductDetailPage() {
                       type="email"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Your email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      required
                     />
                   </div>
                   <div>
@@ -134,6 +238,9 @@ export default function ProductDetailPage() {
                       type="tel"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Your phone"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      required
                     />
                   </div>
                 </div>
@@ -147,6 +254,11 @@ export default function ProductDetailPage() {
                       type="number"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Length"
+                      value={form.length}
+                      onChange={(e) => setForm({ ...form, length: e.target.value })}
+                      min={0.1}
+                      step={0.1}
+                      required
                     />
                   </div>
                   <div>
@@ -157,6 +269,11 @@ export default function ProductDetailPage() {
                       type="number"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Width"
+                      value={form.width}
+                      onChange={(e) => setForm({ ...form, width: e.target.value })}
+                      min={0.1}
+                      step={0.1}
+                      required
                     />
                   </div>
                   <div>
@@ -167,6 +284,11 @@ export default function ProductDetailPage() {
                       type="number"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]"
                       placeholder="Depth"
+                      value={form.depth}
+                      onChange={(e) => setForm({ ...form, depth: e.target.value })}
+                      min={0.1}
+                      step={0.1}
+                      required
                     />
                   </div>
                 </div>
@@ -176,7 +298,7 @@ export default function ProductDetailPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Material *
                     </label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                    <select value={form.material} onChange={(e) => setForm({ ...form, material: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
                       <option>Need Consultation</option>
                       <option>Kraft Paper</option>
                       <option>Cardboard</option>
@@ -185,7 +307,7 @@ export default function ProductDetailPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Print *</label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                    <select value={form.print} onChange={(e) => setForm({ ...form, print: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
                       <option>Need Consultation</option>
                       <option>No Print</option>
                       <option>1 Color</option>
@@ -197,7 +319,7 @@ export default function ProductDetailPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Finishing
                     </label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                    <select value={form.finishing} onChange={(e) => setForm({ ...form, finishing: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
                       <option>Need Consultation</option>
                       <option>Matte</option>
                       <option>Gloss</option>
@@ -210,7 +332,7 @@ export default function ProductDetailPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Additional Options
                   </label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                  <select value={form.additionalOption} onChange={(e) => setForm({ ...form, additionalOption: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
                     <option>Choose Option</option>
                     <option>Window Cutout</option>
                     <option>Handle</option>
@@ -220,7 +342,7 @@ export default function ProductDetailPage() {
 
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Add-up</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
+                  <select value={form.addUp} onChange={(e) => setForm({ ...form, addUp: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--axis-orange)]">
                     <option>Choose Option</option>
                     <option>Rush Order</option>
                     <option>Sample</option>
@@ -232,10 +354,24 @@ export default function ProductDetailPage() {
                     Upload Design (Optional)
                   </label>
                   <div className="border-2 border-dashed border-gray-300 rounded-md p-4 text-center">
-                    <Button variant="outline" className="mb-2">
-                      Choose file
-                    </Button>
-                    <p className="text-sm text-gray-500">No file chosen</p>
+                    <input
+                      id="design-upload"
+                      type="file"
+                      accept=".pdf,.ai,.psd,.jpg,.jpeg,.png"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                        setSelectedFile(file);
+                      }}
+                    />
+                    <label htmlFor="design-upload">
+                      <Button asChild variant="outline" className="mb-2 cursor-pointer">
+                        <span>Choose file</span>
+                      </Button>
+                    </label>
+                    <p className="text-sm text-gray-500">
+                      {selectedFile ? selectedFile.name : "No file chosen"}
+                    </p>
                   </div>
                 </div>
 
@@ -244,14 +380,14 @@ export default function ProductDetailPage() {
                     PRICE ON REQUEST
                   </p>
                   <div className="flex items-center gap-4">
-                    <select className="px-3 py-2 border border-gray-300 rounded-md">
+                    <select value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} className="px-3 py-2 border border-gray-300 rounded-md">
                       <option>500</option>
                       <option>1000</option>
                       <option>2000</option>
                       <option>5000</option>
                     </select>
-                    <Button className="bg-green-600 hover:bg-green-700 text-white px-8">
-                      ADD TO QUOTE
+                    <Button onClick={handleAddToQuote} disabled={submitting} className="bg-green-600 hover:bg-green-700 text-white px-8">
+                      {submitting ? "ADDING..." : "ADD TO QUOTE"}
                     </Button>
                   </div>
                 </div>
@@ -412,7 +548,8 @@ export default function ProductDetailPage() {
                     </h3>
                     <p className="text-gray-600 text-sm mb-4">{relatedProduct.description}</p>
                     <img
-                      src={relatedProduct.image}
+                      src={relatedProduct.image || placeholderImg}
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                       alt={relatedProduct.name}
                       className="w-full h-24 object-cover rounded-lg mb-4"
                     />
